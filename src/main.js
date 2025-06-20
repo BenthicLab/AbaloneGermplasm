@@ -21,8 +21,8 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 
 app.config.globalProperties.$echarts = echarts;
-app.config.globalProperties.$appName = "Mollusk Taxonomy";
-app.config.globalProperties.$serverHostPort = "http://127.0.0.1:5000/"; // http://172.27.127.163:5000/
+app.config.globalProperties.$appName = "Benthic Germplasm";
+// app.config.globalProperties.$serverHostPort = "http://127.0.0.1:5000/"; // http://172.27.127.163:5000/
 
 app.config.warnHandler = () => null;
 app.mount("#app");

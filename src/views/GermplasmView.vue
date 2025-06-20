@@ -299,11 +299,7 @@ export default {
       <el-main>
         <el-table :data="filterTableData" :row-style="handleRowStyle">
           <el-table-column type="selection" width="50" />
-          <el-table-column fixed prop="species" label="Species/Hybrids" width="220">
-            <template #default="{ row }">
-              <span><b><i>{{ row.species }}</i></b></span>
-            </template>
-          </el-table-column>
+          <el-table-column fixed prop="species" label="Species/Hybrids" width="220" />
           <el-table-column prop="pop" label="Population" width="120" />
           <el-table-column prop="strain" label="Strain" width="200" />
           <el-table-column prop="total" label="Total" width="120" />

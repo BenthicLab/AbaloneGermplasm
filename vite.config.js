@@ -12,18 +12,18 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
-  server: {
-    host: "0.0.0.0",
-    open: true,
-    port: 3000,
-    proxy: {
-      "/api": {
-        target: "http://127.0.0.1:5000", // http://172.27.127.163:5000
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-    },
-  },
+  // server: {
+  //   host: "0.0.0.0",
+  //   open: true,
+  //   port: 3000,
+  //   proxy: {
+  //     "/api": {
+  //       target: "http://127.0.0.1:5000", // http://172.27.127.163:5000
+  //       changeOrigin: true,
+  //       rewrite: (path) => path.replace(/^\/api/, ""),
+  //     },
+  //   },
+  // },
   build: {
     outDir: "docs",
     chunkSizeWarningLimit: 1500,

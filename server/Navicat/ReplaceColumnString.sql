@@ -1,0 +1,1 @@
+UPDATE taxonomy SET phylum_image = REPLACE ( phylum_image, '172.27.127.163', '127.0.0.1' ) WHERE phylum_image LIKE '%172.27.127.163%';
