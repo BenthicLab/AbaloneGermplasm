@@ -537,21 +537,33 @@ export default {
   margin-bottom: 20px;
 }
 
-@media (max-width: 1600px) {
+@media (max-width: 1920px) {
   :deep(.el-carousel__container) {
     height: 340px;
   }
-}
 
-@media (max-width: 1200px) {
-  :deep(.el-carousel__container) {
-    height: 270px;
+  .el-main {
+    padding: 10px 10%;
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1080px) {
+  :deep(.el-carousel__container) {
+    height: 270px;
+  }
+
+  .el-main {
+    padding: 10px 10%;
+  }
+}
+
+@media (max-width: 720px) {
   :deep(.el-carousel__container) {
     height: 180px;
+  }
+
+  .el-main {
+    padding: 10px 3%;
   }
 }
 

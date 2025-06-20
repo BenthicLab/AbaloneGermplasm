@@ -348,4 +348,22 @@ export default {
   height: auto;
   color: #000000;
 }
+
+@media (max-width: 1920px) {
+  .el-main {
+    padding: 10px 10%;
+  }
+}
+
+@media (max-width: 1080px) {
+  .el-main {
+    padding: 10px 10%;
+  }
+}
+
+@media (max-width: 720px) {
+  .el-main {
+    padding: 10px 3%;
+  }
+}
 </style>
