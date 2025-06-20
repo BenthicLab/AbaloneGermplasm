@@ -8,9 +8,9 @@
    
 3. <b>杂交种</b>研究是本课题组的另一大亮点，通过结合不同鲍鱼物种的优势基因，开发出了一系列新品种。例如，<b>绿盘鲍（<i>H. discus hannai</i> ♀ × <i>H. fulgens</i> ♂）和西盘鲍（<i>H. gigantea</i> ♀ × <i>H. discus hannai</i>♂）</b>等杂交种，总共涉及57,000个个体。这些杂交种不仅展示了更强的生长性能和环境适应能力，也为鲍鱼养殖业带来了新的希望。
 
-![Home](./src/assets/images/Home.jpg)
+![Home](./src/assets/image/Home.jpg)
 
-![Overview](./src/assets/images/Overview.png)
+![Overview](./src/assets/image/Overview.png)
 
 ### 1.2 Deployment
 
