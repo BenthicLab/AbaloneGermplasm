@@ -17,7 +17,7 @@ export default {
     <el-menu-item index="/">
       <img style="width: 4rem; aspect-ratio: true" src="../assets/image/logo.png" />
       <span style="margin-left: 10px; font-size: 4rem; font-weight: bold; text-shadow: 0px 10px 20px #000000;">
-        BenthicGermplasm 鲍种质资源库
+        AbaloneGermplasm 鲍种质资源库
       </span>
     </el-menu-item>
 

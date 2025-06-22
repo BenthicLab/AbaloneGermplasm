@@ -2,11 +2,11 @@
   <el-row :gutter="0">
     <el-col :span="24" :sm="4" :lg="4">
       <img src="../assets/image/logo.png" style="width: 200px; aspect-ratio: true;" />
-      <p style="font-weight: bold; font-size: 1.3em;">BenthicGermplasm</p>
+      <p style="font-weight: bold; font-size: 1.3em;">AbaloneGermplasm</p>
     </el-col>
     <el-col :span="24" :sm="10" :lg="10">
       <p style="font-weight: bold;">Copyright © 2025-Now BenthicLab. All Rights Reserved.</p>
-      <p style="font-weight: bold;">BenthicGermplasm: a benthic germplasm bank.</p>
+      <p style="font-weight: bold;">AbaloneGermplasm: a abalone germplasm bank.</p>
 
       <br />
       <p style="font-weight: bold;"><el-icon>

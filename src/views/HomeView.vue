@@ -205,7 +205,7 @@ export default {
         <h1>1. Intro & Stats 鲍种质资源介绍与统计:</h1>
         <el-divider content-position="left">Intro & Stats 鲍种质资源介绍与统计</el-divider>
         <el-card style="width: 100%; margin-bottom: 20px; font-size: 1rem;" shadow="never">
-          <b>厦门大学底栖生物课题组</b>针对鲍种质资源进行了广泛而深入的研究和积累，旨在通过分析不同地理群体、杂交种及选育品系来探索和利用<b>鲍的遗传多样性</b>。
+          <b>厦门大学鲍遗传育种团队</b>针对鲍种质资源进行了广泛而深入的研究和积累，旨在通过分析不同地理群体、杂交种及选育品系来探索和利用<b>鲍的遗传多样性</b>。
           <br />
           <br />
           <b>皱纹盘鲍（<i>Haliotis discus hannai</i>）</b>作为主要研究对象共有208,800数量占半，包含韩国群体、日本群体、大连群体、青岛群体、洋下群体

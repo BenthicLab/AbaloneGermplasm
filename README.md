@@ -1,4 +1,4 @@
-## 1. BenthicGermplasm
+## 1. AbaloneGermplasm
 
 ### 1.1 Introduction
 
@@ -15,8 +15,8 @@
 ### 1.2 Deployment
 
 ```bash
-git clone https://github.com/BenthicLab/BenthicGermplasm.git
-cd BenthicGermplasm
+git clone https://github.com/BenthicLab/AbaloneGermplasm.git
+cd AbaloneGermplasm
 
 npm install
 npm run dev
