@@ -13,10 +13,10 @@ export default {
 
 <template>
   <el-menu :default-active="activeIndex" mode="horizontal" ellipsis="true" menu-trigger="hover"
-    collapse-transition="true" router>
+    collapse-transition="false" router>
     <el-menu-item index="/">
-      <img style="width: 3em; aspect-ratio: true" src="../assets/image/logo.png" />
-      <span style="margin-left: 10px; font-size: 1.2em; font-weight: bold">
+      <img style="width: 4rem; aspect-ratio: true" src="../assets/image/logo.png" />
+      <span style="margin-left: 10px; font-size: 4rem; font-weight: bold; text-shadow: 0px 10px 20px #000000;">
         BenthicGermplasm 鲍种质资源库
       </span>
     </el-menu-item>
@@ -84,44 +84,44 @@ export default {
 
 <style scoped>
 .el-menu {
-  justify-content: center;
+  padding: 20px 0px 20px 0px;
 }
 
 .el-menu-item {
   color: #ffffff !important;
-  font-size: 1.2em !important;
+  font-size: 1.5rem !important;
   font-weight: bolder;
   transform: scale(0.8);
 }
 
 .el-menu-item:hover {
   color: #000000 !important;
-  font-size: 1.2em !important;
+  font-size: 1.5rem !important;
   font-weight: bolder;
   transform: scale(0.8);
   border-radius: 10px;
 }
 
 .el-icon {
-  font-size: 2em !important;
+  font-size: 3rem !important;
 }
 </style>
 
 <style>
 :root {
-  --el-menu-bg-color: #007aa7 !important;
+  --el-menu-bg-color: #005678 !important;
 }
 
 .el-menu--horizontal>.el-sub-menu .el-sub-menu__title {
   color: #ffffff !important;
-  font-size: 1.2em !important;
+  font-size: 1.5rem !important;
   font-weight: bolder;
   transform: scale(0.8);
 }
 
 .el-menu--horizontal>.el-sub-menu .el-sub-menu__title:hover {
   color: #000000 !important;
-  font-size: 1.2em !important;
+  font-size: 1.5rem !important;
   font-weight: bolder;
   transform: scale(0.8);
   border-radius: 10px;

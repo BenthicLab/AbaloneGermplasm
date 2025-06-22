@@ -203,11 +203,9 @@ export default {
         </el-carousel>
 
         <br />
-        <br />
-        <br />
-        <h2>1. Intro & Stats 鲍种质资源介绍与统计:</h2>
+        <h1>1. Intro & Stats 鲍种质资源介绍与统计:</h1>
         <el-divider content-position="left">Intro & Stats 鲍种质资源介绍与统计</el-divider>
-        <el-card style="width: 100%; margin-bottom: 20px" shadow="never">
+        <el-card style="width: 100%; margin-bottom: 20px; font-size: 1.2rem;" shadow="never">
           <b>厦门大学底栖生物课题组</b>针对鲍种质资源进行了广泛而深入的研究和积累，旨在通过分析不同地理群体、杂交种及选育品系来探索和利用<b>鲍的遗传多样性</b>。
           <br />
           <br />
@@ -297,7 +295,7 @@ export default {
         <br />
         <br />
         <br />
-        <h2>2. Overview & Tree 鲍种质资源概览图:</h2>
+        <h1>2. Overview & Tree 鲍种质资源概览图:</h1>
         <el-divider content-position="left">Overview & Tree 鲍种质资源概览图</el-divider>
         <el-card shadow="none">
           <img src="../assets/image/Overview.png" alt="" style="width: 100%" />
@@ -306,7 +304,7 @@ export default {
         <br />
         <br />
         <br />
-        <h2>3. Publications & News 论文发表与新讯:</h2>
+        <h1>3. Publications & News 论文发表与新讯:</h1>
         <el-divider content-position="left">Publications & News 论文发表与新讯</el-divider>
         <el-row :gutter="20">
           <el-col :lg="8" :md="12" :sm="24" :xs="24">
@@ -374,7 +372,7 @@ export default {
         <br />
         <br />
         <br />
-        <h2>4. Updates & History 更新历史:</h2>
+        <h1>4. Updates & History 更新历史:</h1>
         <el-divider content-position="left">Updates & History 更新历史:</el-divider>
         <div style="
             height: 580px;
@@ -452,7 +450,7 @@ export default {
         <br />
         <br />
         <br />
-        <h2>5. Abalone bases 鲍养殖基地:</h2>
+        <h1>5. Abalone bases 鲍养殖基地:</h1>
         <el-divider content-position="left">Abalone bases 鲍养殖基地</el-divider>
         <el-card :body-style="{ padding: '0px' }" style="width: 97%; height: 520px" shadow="hover">
           <h3 style="text-algin: center">
@@ -475,7 +473,7 @@ export default {
 <style scoped>
 .el-main {
   padding: 10px 10%;
-  margin-top: 70px;
+  margin-top: 100px;
 }
 
 .el-carousel__item h3 {

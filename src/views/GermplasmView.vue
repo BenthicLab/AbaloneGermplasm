@@ -339,7 +339,7 @@ export default {
 <style scoped>
 .el-main {
   padding: 10px 10%;
-  margin-top: 70px;
+  margin-top: 100px;
 }
 
 .el-table {
