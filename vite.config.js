@@ -1,12 +1,25 @@
 import { fileURLToPath, URL } from "node:url";
-
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import fs from "fs-extra";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "/BenthicGermplasm/",
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    {
+      name: 'copy-index-to-404',
+      apply: 'build',
+      closeBundle() {
+        const source = './docs/index.html';
+        const destination = './docs/404.html';
+
+        fs.copyFileSync(source, destination);
+        console.log('Copy ./docs/index.html to ./docs/404.html');
+      },
+    },
+  ],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
