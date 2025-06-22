@@ -25,10 +25,10 @@ export default {
     };
   },
   mounted() {
-    // this.email = getCookie("username");
-    // if (this.email == "") {
-    //   this.$router.push("/login");
-    // }
+    this.email = getCookie("username");
+    if (this.email == "") {
+      this.$router.push("/login");
+    }
 
     this.initMap();
     this.addCoordinates();

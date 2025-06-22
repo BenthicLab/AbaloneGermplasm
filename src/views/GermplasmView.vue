@@ -2,6 +2,8 @@
 import AppHeader from "../components/AppHeader.vue";
 import AppFooter from "../components/AppFooter.vue";
 
+import { setCookie, getCookie, delCookie } from "../assets/js/cookie.js";
+
 export default {
   components: {
     AppHeader,
@@ -252,6 +254,12 @@ export default {
           year2_weight: '47.71±15.43'
         },
       ],
+    }
+  },
+  mounted() {
+    this.email = getCookie("username");
+    if (this.email == "") {
+      this.$router.push("/login");
     }
   },
   computed: {

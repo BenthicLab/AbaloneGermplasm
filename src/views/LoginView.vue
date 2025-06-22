@@ -67,60 +67,94 @@ export default {
     }
   },
   methods: {
+    // 1. Flask server
+    // login() {
+    //   if (this.loginForm.email == "" || this.loginForm.password == "") {
+    //     this.$message({
+    //       message: "Please input your email and password !",
+    //       type: "warning",
+    //     });
+    //   } else {
+    //     axios
+    //       .post(this.serverHostPort + "login", this.loginForm)
+    //       .then((res) => {
+    //         // console.log(res.data);
+    //         if (res.data == "EmailError") {
+    //           this.$message({
+    //             message: "Please input username with email format contain @ !",
+    //             type: "warning",
+    //           });
+    //         } else if (res.data == "QueryError") {
+    //           this.$message({
+    //             message: "The database error when query form !",
+    //             type: "warning",
+    //           });
+    //         } else if (res.data == "ExistError") {
+    //           this.$message({
+    //             message: "The username/email or password not correct !",
+    //             type: "warning",
+    //           });
+    //         } else if (res.data == "AdminSuccess") {
+    //           this.$message({
+    //             message: "Login success, welcome dear admin !",
+    //             type: "success",
+    //           });
+    //           setCookie("username", this.loginForm.email, 1000 * 60);
+    //           setTimeout(
+    //             function () {
+    //               this.$router.push("/admin");
+    //             }.bind(this),
+    //             1000
+    //           );
+    //         } else if (res.data == "UserSuccess") {
+    //           this.$message({
+    //             message: "Login success, welcome dear user !",
+    //             type: "success",
+    //           });
+    //           setCookie("username", this.loginForm.email, 1000 * 60);
+    //           setTimeout(
+    //             function () {
+    //               this.$router.push("/");
+    //             }.bind(this),
+    //             1000
+    //           );
+    //         }
+    //       });
+    //   }
+    // },
+
+    // 2. No server
     login() {
-      if (this.loginForm.email == "" || this.loginForm.password == "") {
+      const correctUser = "admin@admin.com";
+      const correctPass = "BenthicLab";
+
+      if (!this.loginForm.email || !this.loginForm.password) {
         this.$message({
           message: "Please input your email and password !",
           type: "warning",
         });
+        return;
+      }
+
+      if (this.loginForm.email === correctUser && this.loginForm.password === correctPass) {
+        this.$message({
+          message: "Login success, welcome dear admin !",
+          type: "success",
+        });
+
+        setCookie("username", this.loginForm.email, 1000 * 60);
+
+        setTimeout(() => {
+          this.$router.push("/");
+        }, 1000);
       } else {
-        axios
-          .post(this.serverHostPort + "login", this.loginForm)
-          .then((res) => {
-            // console.log(res.data);
-            if (res.data == "EmailError") {
-              this.$message({
-                message: "Please input username with email format contain @ !",
-                type: "warning",
-              });
-            } else if (res.data == "QueryError") {
-              this.$message({
-                message: "The database error when query form !",
-                type: "warning",
-              });
-            } else if (res.data == "ExistError") {
-              this.$message({
-                message: "The username/email or password not correct !",
-                type: "warning",
-              });
-            } else if (res.data == "AdminSuccess") {
-              this.$message({
-                message: "Login success, welcome dear admin !",
-                type: "success",
-              });
-              setCookie("username", this.loginForm.email, 1000 * 60);
-              setTimeout(
-                function () {
-                  this.$router.push("/admin");
-                }.bind(this),
-                1000
-              );
-            } else if (res.data == "UserSuccess") {
-              this.$message({
-                message: "Login success, welcome dear user !",
-                type: "success",
-              });
-              setCookie("username", this.loginForm.email, 1000 * 60);
-              setTimeout(
-                function () {
-                  this.$router.push("/");
-                }.bind(this),
-                1000
-              );
-            }
-          });
+        this.$message({
+          message: "The username/email or password not correct !",
+          type: "error",
+        });
       }
     },
+
     resetLoginForm() {
       this.loginForm.email = "";
       this.loginForm.password = "";
