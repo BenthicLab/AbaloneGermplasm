@@ -2,15 +2,15 @@
 import AppHeader from "../components/AppHeader.vue";
 import AppFooter from "../components/AppFooter.vue";
 
-import { setCookie, getCookie, delCookie } from "../assets/js/cookie.js";
+import { getCookie } from "../assets/js/cookie.js";
 
 import "ol/ol.css";
 import { Map, View, Feature } from "ol";
 import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
-import { OSM, XYZ, TileJSON, Vector as VectorSource } from "ol/source";
+import { XYZ, Vector as VectorSource } from "ol/source";
 import { fromLonLat } from "ol/proj";
 import { Point } from "ol/geom";
-import { Style, Fill, Stroke, Icon, Circle as sCircle } from "ol/style";
+import { Style, Fill, Stroke, Circle as sCircle } from "ol/style";
 
 export default {
   components: {
@@ -121,10 +121,6 @@ export default {
                 ovina</i>）和耳鲍（<i>Haliotis
                 asinina</i>）等其他几种鲍鱼物种，总计47,900个样本。
               特别是对三倍体的研究，样本数达到34,000个。
-              <br />
-              <br />
-              <br />
-              <br />
             </el-card>
           </el-col>
           <el-col :span="24" :sm="12" :lg="12">
@@ -172,50 +168,50 @@ export default {
         <br />
         <h2>3. Software 软件著作获得部分:</h2>
         <el-row :gutter="20">
-          <el-col :lg="8" :md="12" :sm="24" :xs="24">
+          <el-col :lg="8" :md="12" :sm="24" :xs="24" style="margin-bottom: 20px;">
             <el-card shadow="hover" class="paper-card">
               <img src="../assets/image/patent-01.jpg" alt="" style="width: 100%;" />
-              <p style="text-align: center; font-size: 1rem; margin: 0rem">
+              <p style="text-align: center; font-size: 1rem; margin: 12px 0 4px;">
                 基于Flask-Vue开发用于存储和分析鲍鱼表型和基因型的数据库软件 (BenthicLab)
               </p>
             </el-card>
           </el-col>
-          <el-col :lg="8" :md="12" :sm="24" :xs="24">
+          <el-col :lg="8" :md="12" :sm="24" :xs="24" style="margin-bottom: 20px;">
             <el-card shadow="hover" class="paper-card">
               <img src="../assets/image/patent-02.jpg" alt="" style="width: 100%;" />
-              <p style="text-align: center; font-size: 1rem; margin: 0rem">
+              <p style="text-align: center; font-size: 1rem; margin: 12px 0 4px;">
                 基于Java和R开发用于生物多组学数据分析和可视化的桌面程序软件 (BenthicLab)
               </p>
             </el-card>
           </el-col>
-          <el-col :lg="8" :md="12" :sm="24" :xs="24">
+          <el-col :lg="8" :md="12" :sm="24" :xs="24" style="margin-bottom: 20px;">
             <el-card shadow="hover" class="paper-card">
               <img src="../assets/image/patent-03.jpg" alt="" style="width: 100%;" />
-              <p style="text-align: center; font-size: 1rem; margin: 0rem">
+              <p style="text-align: center; font-size: 1rem; margin: 12px 0 4px;">
                 基于R-Shiny搭建WGCNA加权基因共表达网络分析流程化平台 (BenthicLab)
               </p>
             </el-card>
           </el-col>
-          <el-col :lg="8" :md="12" :sm="24" :xs="24">
+          <el-col :lg="8" :md="12" :sm="24" :xs="24" style="margin-bottom: 20px;">
             <el-card shadow="hover" class="paper-card">
               <img src="../assets/image/patent-04.jpg" alt="" style="width: 100%;" />
-              <p style="text-align: center; font-size: 1rem; margin: 0rem">
+              <p style="text-align: center; font-size: 1rem; margin: 12px 0 4px;">
                 适用于生物学中分析和构建生物分子调控网络的在线操作平台 (BenthicLab)
               </p>
             </el-card>
           </el-col>
-          <el-col :lg="8" :md="12" :sm="24" :xs="24">
+          <el-col :lg="8" :md="12" :sm="24" :xs="24" style="margin-bottom: 20px;">
             <el-card shadow="hover" class="paper-card">
               <img src="../assets/image/patent-05.jpg" alt="" style="width: 100%;" />
-              <p style="text-align: center; font-size: 1rem; margin: 0rem">
+              <p style="text-align: center; font-size: 1rem; margin: 12px 0 4px;">
                 基于R开发用于结构方程模型构建和评估的在线分析平台 (BenthicLab)
               </p>
             </el-card>
           </el-col>
-          <el-col :lg="8" :md="12" :sm="24" :xs="24">
+          <el-col :lg="8" :md="12" :sm="24" :xs="24" style="margin-bottom: 20px;">
             <el-card shadow="hover" class="paper-card">
               <img src="../assets/image/patent-06.jpg" alt="" style="width: 100%;" />
-              <p style="text-align: center; font-size: 1rem; margin: 0rem">
+              <p style="text-align: center; font-size: 1rem; margin: 12px 0 4px;">
                 基于R语言开发生物信息学双序列多算法配对比对在线服务平台 (BenthicLab)
               </p>
             </el-card>
@@ -256,12 +252,133 @@ export default {
 </template>
 
 <style scoped>
-.el-card {
-  text-align: justify;
-  border-radius: 10px;
+.el-main {
+  padding: 24px 8%;
+  margin-top: 80px;
 }
 
-.el-col {
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a3a4a;
+  margin: 32px 0 20px 0;
+  padding-bottom: 12px;
+  border-bottom: 3px solid #006a94;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-title::before {
+  content: '';
+  width: 4px;
+  height: 24px;
+  background: linear-gradient(135deg, #006a94, #004a6c);
+  border-radius: 2px;
+}
+
+.content-card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.content-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.image-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.image-container img {
+  width: 100%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.patent-card {
   margin-bottom: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.patent-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.patent-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.patent-card:hover .patent-image {
+  transform: scale(1.05);
+}
+
+.patent-title {
+  padding: 16px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: center;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.contact-card {
+  background: linear-gradient(135deg, #f0f7fa 0%, #e8f4f8 100%);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.contact-info {
+  line-height: 2;
+  font-size: 1rem;
+  color: #2c3e50;
+}
+
+.contact-info p {
+  margin-bottom: 12px;
+}
+
+.map-container {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 1200px) {
+  .el-main {
+    padding: 20px 4%;
+  }
+}
+
+@media (max-width: 768px) {
+  .el-main {
+    padding: 16px 3%;
+    margin-top: 70px;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .patent-image {
+    height: 160px;
+  }
 }
 </style>

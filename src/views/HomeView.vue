@@ -3,21 +3,28 @@ import AppHeader from "../components/AppHeader.vue";
 import AppFooter from "../components/AppFooter.vue";
 
 import { ElNotification } from "element-plus";
+import { Location, Collection, DataAnalysis, Star, Share, Document } from "@element-plus/icons-vue";
 
-import { setCookie, getCookie, delCookie } from "../assets/js/cookie.js";
+import { getCookie } from "../assets/js/cookie.js";
 
 import "ol/ol.css";
 import { Map, View, Feature } from "ol";
 import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
-import { OSM, XYZ, TileJSON, Vector as VectorSource } from "ol/source";
+import { XYZ, Vector as VectorSource } from "ol/source";
 import { fromLonLat } from "ol/proj";
 import { Point } from "ol/geom";
-import { Style, Fill, Stroke, Icon, Circle as sCircle } from "ol/style";
+import { Style, Fill, Stroke, Circle as sCircle } from "ol/style";
 
 export default {
   components: {
     AppHeader,
     AppFooter,
+    Location,
+    Collection,
+    DataAnalysis,
+    Star,
+    Share,
+    Document,
   },
   data() {
     return {
@@ -31,22 +38,68 @@ export default {
         [113.560557, 22.31406],
         [111.941595, 21.739393],
       ],
-      // imageList: [
-      //   {
-      //     url: require("../assets/image/whale.jpg"),
-      //   },
-      //   {
-      //     url: require("../assets/image/whale.jpg"),
-      //   },
-      //   {
-      //     url: require("../assets/image/whale.jpg"),
-      //   },
-      // ],
+      carouselItems: [
+        { image: new URL('../assets/image/Haliotis_discus_hannai.jpg', import.meta.url).href, caption: 'Haliotis discus hannai 皱纹盘鲍' },
+        { image: new URL('../assets/image/Haliotis_fulgens.jpg', import.meta.url).href, caption: 'Haliotis fulgens 绿鲍' },
+        { image: new URL('../assets/image/Haliotis_ovina.jpg', import.meta.url).href, caption: 'Haliotis ovina 羊鲍' },
+        { image: new URL('../assets/image/Haliotis_asinina.jpg', import.meta.url).href, caption: 'Haliotis asinina 耳鲍' },
+        { image: new URL('../assets/image/Haliotis_gigantea.jpg', import.meta.url).href, caption: 'Haliotis gigantea 西氏鲍' },
+        { image: new URL('../assets/image/Haliotis_diversicolor.jpg', import.meta.url).href, caption: 'Haliotis diversicolor 杂色鲍' },
+      ],
+      stats: [
+        { number: '10', label: 'Species & Hybrids<br>鲍物种及杂交种', icon: 'Collection' },
+        { number: '385,700', label: 'Total individuals<br>所有基地总鲍数量', icon: 'DataAnalysis' },
+        { number: '208,800', label: '<i>H. discus hannai</i><br>皱纹盘鲍数量', icon: 'Star' },
+        { number: '7+2', label: 'Geographical populations<br>地理群体', icon: 'Location' },
+        { number: '3+ (57K)', label: 'New Hybrids<br>新杂交种及数量', icon: 'Share' },
+        { number: '7 (221)', label: 'Breeding lines<br>选育品系', icon: 'Document' },
+      ],
+      papers: [
+        { link: 'https://doi.org/10.1016/j.foodchem.2025.143913', image: new URL('../assets/image/paper-01.jpg', import.meta.url).href, title: '应用深度学习算法对不同颜色太平洋鲍足肌中类胡萝卜素含量进行无创估计 (Liu et al., 2025)' },
+        { link: 'https://doi.org/10.1016/j.aquaculture.2025.742799', image: new URL('../assets/image/paper-02.jpg', import.meta.url).href, title: '种间三元杂交鲍鱼繁殖特性及其在亚热带海域养殖性能的研究 (Zhang et al., 2025)' },
+        { link: 'https://doi.org/10.3390/ani15020211', image: new URL('../assets/image/paper-03.jpg', import.meta.url).href, title: '鉴定出 10 个候选基因与杂交鲍生长差异显著相关 (Xiao et al., 2024)' },
+        { link: 'https://doi.org/10.1111/jwas.13118', image: new URL('../assets/image/paper-04.jpg', import.meta.url).href, title: '皱纹盘鲍普通肉与橘红肉肠道微生物群的差异以及饲料对鲍鱼肠道微生物群的影响 (Wei et al., 2025)' },
+        { link: 'https://doi.org/10.1016/j.envres.2024.120324', image: new URL('../assets/image/paper-05.jpg', import.meta.url).href, title: '耐缺氧能力与耐热能力之间的弱相关性增加了鲍鱼对气候变化的易感性 (Shen et al., 2024)' },
+        { link: 'https://doi.org/10.1016/j.aquaculture.2024.741657', image: new URL('../assets/image/paper-06.jpg', import.meta.url).href, title: '杂交鲍（皱纹盘鲍♀× 绿鲍♂）转录组分析揭示非加性效应促成福建初夏水温下的生长杂种优势 (Huang et al., 2024)' },
+      ],
+      timelineItems: [
+        {
+          date: '2025-06-20',
+          title: '完善和美化布局',
+          descriptions: [
+            '完成 MySQL 数据库表结构设计与初始化',
+            '新增树形结构数据转换与展示功能',
+            '集成 ECharts，支持首页统计图表展示',
+            '增加用户登录状态检测与跳转逻辑',
+            '增加页面顶部和底部组件，统一站点风格',
+          ],
+        },
+        {
+          date: '2025-06-19',
+          title: '集成地图与动态渲染',
+          descriptions: [
+            '新增论文与新闻板块，支持图片和外链展示',
+            '集成 OpenLayers 地图，展示鲍养殖基地地理分布',
+            '实现地图坐标点的动态渲染与样式美化',
+            '优化页面自适应，提升移动端浏览体验',
+            '增加数据库更新历史时间线，便于追踪项目进展',
+          ],
+        },
+        {
+          date: '2025-06-18',
+          title: '初步完成首页设计与布局',
+          descriptions: [
+            '完成鲍种质资源数据库首页设计与布局',
+            '集成 Element Plus 组件库，实现响应式页面布局',
+            '新增首页轮播图，展示主要鲍鱼物种图片',
+            '增加鲍鱼种质资源统计卡片，直观显示各类数据',
+            '完成鲍鱼种质资源概览图的展示功能',
+          ],
+        },
+      ],
     };
   },
   mounted() {
-    // this.chart1();
-
     window.onresize = function () {
       location.reload(true);
     };
@@ -68,66 +121,17 @@ export default {
     this.addCoordinates();
   },
   methods: {
-    chart1() {
-      var myChart1 = this.$echarts.init(document.getElementById("chart1"));
-
-      var option = {
-        // legend: {
-        //   right: "right",
-        // },
-        tooltip: {
-          trigger: "item",
-          formatter: "{a} <br/>{b} : {c} ({d}%)",
-        },
-        series: [
-          {
-            name: "Charts",
-            type: "pie",
-            radius: [20, 200],
-            center: ["50%", "50%"],
-            roseType: "area",
-            itemStyle: {
-              borderRadius: 8,
-            },
-            data: [
-              { value: 10, name: "Arhynchobdellida" },
-              { value: 16, name: "Rhynchobdellida" },
-              { value: 12, name: "Euhirudinea" },
-              { value: 8, name: "Capilloventrida" },
-              { value: 10, name: "Crassiclitellata" },
-              { value: 12, name: "Enchytraeida" },
-              { value: 14, name: "Haplotaxida" },
-              { value: 16, name: "Lumbriculida" },
-              { value: 18, name: "Oligochaeta incertae sedis" },
-              { value: 20, name: "Randiellida" },
-              { value: 6, name: "Tubificida" },
-              { value: 4, name: "Oligochaeta" },
-              { value: 18, name: "Echiuroidea" },
-            ],
-          },
-        ],
-      };
-
-      myChart1.setOption(option);
-    },
-
     initMap() {
       this.openMap = new Map({
         target: "about-map",
         layers: [
           new TileLayer({
-            // source: new OSM(),
-            // source: new XYZ({
-            //   url: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-            // }),
             source: new XYZ({
-              // url: "http://wprd0{1-4}.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=zh_cn&size=1&scl=1&style=7",
               url: "http://wprd0{1-4}.is.autonavi.com/appmaptile?x={x}&y={y}&z={z}&lang=en&size=1&scl=1&style=6",
             }),
           }),
         ],
         view: new View({
-          // center: [0, 0],
           center: fromLonLat([118.06, 24.27]),
           projection: "EPSG:3857",
           zoom: 7,
@@ -175,291 +179,107 @@ export default {
         <AppHeader />
       </el-header>
       <el-main>
-        <el-carousel :interval="4000" type="card" height="400" arrow="always" style="width: 100%">
-          <el-carousel-item>
-            <img src="../assets/image/Haliotis_discus_hannai.jpg" class="image carousel-image" />
-            <div class="slide-caption">Haliotis discus hannai 皱纹盘鲍</div>
-          </el-carousel-item>
-          <el-carousel-item>
-            <img src="../assets/image/Haliotis_fulgens.jpg" class="image carousel-image" />
-            <div class="slide-caption">Haliotis fulgens 绿鲍</div>
-          </el-carousel-item>
-          <el-carousel-item>
-            <img src="../assets/image/Haliotis_ovina.jpg" class="image carousel-image" />
-            <div class="slide-caption">Haliotis ovina 羊鲍</div>
-          </el-carousel-item>
-          <el-carousel-item>
-            <img src="../assets/image/Haliotis_asinina.jpg" class="image carousel-image" />
-            <div class="slide-caption">Haliotis asinina 耳鲍</div>
-          </el-carousel-item>
-          <el-carousel-item>
-            <img src="../assets/image/Haliotis_gigantea.jpg" class="image carousel-image" />
-            <div class="slide-caption">Haliotis gigantea 西氏鲍</div>
-          </el-carousel-item>
-          <el-carousel-item>
-            <img src="../assets/image/Haliotis_diversicolor.jpg" class="image carousel-image" />
-            <div class="slide-caption">Haliotis diversicolor 杂色鲍</div>
+        <!-- Carousel Section -->
+        <el-carousel :interval="4000" type="card" height="400" arrow="always" class="hero-carousel">
+          <el-carousel-item v-for="(item, index) in carouselItems" :key="index">
+            <img :src="item.image" class="carousel-image" />
+            <div class="slide-caption">{{ item.caption }}</div>
           </el-carousel-item>
         </el-carousel>
 
-        <h1>1. Intro & Stats 鲍种质资源介绍与统计:</h1>
-        <el-divider content-position="left">Intro & Stats 鲍种质资源介绍与统计</el-divider>
-        <el-card style="width: 100%; margin-bottom: 20px; font-size: 1rem;" shadow="never">
-          <b>厦门大学鲍遗传育种团队</b>针对鲍种质资源进行了广泛而深入的研究和积累，旨在通过分析不同地理群体、杂交种及选育品系来探索和利用<b>鲍的遗传多样性</b>。
-          <br />
-          <br />
-          <b>皱纹盘鲍（<i>Haliotis discus hannai</i>）</b>作为主要研究对象共有208,800数量占半，包含韩国群体、日本群体、大连群体、青岛群体、洋下群体
-          、晋江群体、海南群体等7个地理群体，以及<b>高糖原品系、红壳品系、紫壳品系、高食物转化率选育系、足肌拉力选育系、足肌颜色选育系、耐低氧选育系</b>等7个
-          优良性状选育品系。这些选育工作不仅有助于提高鲍鱼养殖的成功率和经济效益，也为后续的遗传学研究奠定了基础。
-          <br />
-          <br />
-          <b>杂交种</b>研究是本课题组的另一大亮点，通过结合不同鲍鱼物种的优势基因，开发出了一系列新品种。例如，<b>绿盘鲍（<i>H. discus hannai</i> ♀ × <i>H. fulgens</i> ♂）
-            和西盘鲍（<i>H. gigantea</i> ♀ × <i>H. discus hannai</i>
-            ♂）</b>等杂交种，总共涉及57,000个个体。这些杂交种不仅展示了更强的生长性能和环境适应能力，也为鲍鱼养殖业带来了新的希望。
-          <br />
-          <br />
-          西氏鲍（<i>Haliotis gigantea</i>）、杂色鲍（<i>Haliotis diversicolor</i>）、羊鲍（<i>Haliotis ovina</i>）和耳鲍（<i>Haliotis
-            asinina</i>）等其他几种鲍鱼物种，总计47,900个样本。
-          特别是对三倍体的研究，样本数达到34,000个。
-        </el-card>
-        <el-row :gutter="20">
-          <el-col :lg="4" :md="8" :sm="12" :xs="24">
-            <el-card shadow="hover" class="stats-card">
-              <p style="text-align: center; font-size: 2rem; margin: 0rem">
-                10
-              </p>
-              <hr />
-              <p style="text-align: center; font-size: 0.9rem; margin: 0rem">
-                Species & Hybrids 鲍物种及杂交种
-              </p>
-            </el-card>
-          </el-col>
-          <el-col :lg="4" :md="8" :sm="12" :xs="24">
-            <el-card shadow="hover" class="stats-card">
-              <p style="text-align: center; font-size: 2rem; margin: 0rem">
-                385,700
-              </p>
-              <hr />
-              <p style="text-align: center; font-size: 0.9rem; margin: 0rem">
-                Total individuals 所有基地总鲍数量
-              </p>
-            </el-card>
-          </el-col>
-          <el-col :lg="4" :md="8" :sm="12" :xs="24">
-            <el-card shadow="hover" class="stats-card">
-              <p style="text-align: center; font-size: 2rem; margin: 0rem">
-                208,800
-              </p>
-              <hr />
-              <p style="text-align: center; font-size: 0.9rem; margin: 0rem">
-                <i>Haliotis discus hannai</i> 皱纹盘鲍数量
-              </p>
-            </el-card>
-          </el-col>
-          <el-col :lg="4" :md="8" :sm="12" :xs="24">
-            <el-card shadow="hover" class="stats-card">
-              <p style="text-align: center; font-size: 2rem; margin: 0rem">
-                7+2
-              </p>
-              <hr />
-              <p style="text-align: center; font-size: 0.9rem; margin: 0rem">
-                Geographical populations 地理群体
-              </p>
-            </el-card>
-          </el-col>
-          <el-col :lg="4" :md="8" :sm="12" :xs="24">
-            <el-card shadow="hover" class="stats-card">
-              <p style="text-align: center; font-size: 2rem; margin: 0rem">
-                3+ (57,000)
-              </p>
-              <hr />
-              <p style="text-align: center; font-size: 0.9rem; margin: 0rem">
-                New Hybrids 新杂交种及数量
-              </p>
-            </el-card>
-          </el-col>
-          <el-col :lg="4" :md="8" :sm="12" :xs="24">
-            <el-card shadow="hover" class="stats-card">
-              <p style="text-align: center; font-size: 2rem; margin: 0rem">
-                7 (221)
-              </p>
-              <hr />
-              <p style="text-align: center; font-size: 0.9rem; margin: 0rem">
-                Excellent trait breeding lines 选育品系
-              </p>
-            </el-card>
-          </el-col>
-        </el-row>
+        <!-- Section 1: Intro & Stats -->
+        <section class="content-section">
+          <h1>1. Intro & Stats 鲍种质资源介绍与统计</h1>
+          <el-card class="intro-card" shadow="hover">
+            <p class="intro-text">
+              <b>厦门大学鲍遗传育种团队</b>针对鲍种质资源进行了广泛而深入的研究和积累，旨在通过分析不同地理群体、杂交种及选育品系来探索和利用<b>鲍的遗传多样性</b>。
+            </p>
+            <p class="intro-text">
+              <b>皱纹盘鲍（<i>Haliotis discus hannai</i>）</b>作为主要研究对象共有208,800数量占半，包含韩国群体、日本群体、大连群体、青岛群体、洋下群体、晋江群体、海南群体等7个地理群体，以及<b>高糖原品系、红壳品系、紫壳品系、高食物转化率选育系、足肌拉力选育系、足肌颜色选育系、耐低氧选育系</b>等7个优良性状选育品系。
+            </p>
+            <p class="intro-text">
+              <b>杂交种</b>研究是本课题组的另一大亮点，通过结合不同鲍鱼物种的优势基因，开发出了一系列新品种。例如，<b>绿盘鲍（<i>H. discus hannai</i> ♀ × <i>H. fulgens</i> ♂）和西盘鲍（<i>H. gigantea</i> ♀ × <i>H. discus hannai</i> ♂）</b>等杂交种，总共涉及57,000个个体。
+            </p>
+            <p class="intro-text">
+              西氏鲍（<i>Haliotis gigantea</i>）、杂色鲍（<i>Haliotis diversicolor</i>）、羊鲍（<i>Haliotis ovina</i>）和耳鲍（<i>Haliotis asinina</i>）等其他几种鲍鱼物种，总计47,900个样本。特别是对三倍体的研究，样本数达到34,000个。
+            </p>
+          </el-card>
 
-        <br />
-        <br />
-        <br />
-        <h1>2. Overview & Tree 鲍种质资源概览图:</h1>
-        <el-divider content-position="left">Overview & Tree 鲍种质资源概览图</el-divider>
-        <el-card shadow="none">
-          <img src="../assets/image/Overview.png" alt="" style="width: 100%" />
-        </el-card>
-
-        <br />
-        <br />
-        <br />
-        <h1>3. Publications & News 论文发表与新讯:</h1>
-        <el-divider content-position="left">Publications & News 论文发表与新讯</el-divider>
-        <el-row :gutter="20">
-          <el-col :lg="8" :md="12" :sm="24" :xs="24">
-            <el-card shadow="hover" class="paper-card">
-              <a href="https://doi.org/10.1016/j.foodchem.2025.143913" target="_blank">
-                <img src="../assets/image/paper-01.jpg" alt="" style="width: 100%; height: 280px;" />
-              </a>
-              <p style="text-align: center; font-size: 1rem; margin: 0rem">
-                应用深度学习算法对不同颜色太平洋鲍足肌中类胡萝卜素含量进行无创估计 (Liu et al., 2025)
-              </p>
-            </el-card>
-          </el-col>
-          <el-col :lg="8" :md="12" :sm="24" :xs="24">
-            <el-card shadow="hover" class="paper-card">
-              <a href="https://doi.org/10.1016/j.aquaculture.2025.742799" target="_blank">
-                <img src="../assets/image/paper-02.jpg" alt="" style="width: 100%; height: 280px;" />
-              </a>
-              <p style="text-align: center; font-size: 1rem; margin: 0rem">
-                种间三元杂交鲍鱼繁殖特性及其在亚热带海域养殖性能的研究 (Zhang et al., 2025)
-              </p>
-            </el-card>
-          </el-col>
-          <el-col :lg="8" :md="12" :sm="24" :xs="24">
-            <el-card shadow="hover" class="paper-card">
-              <a href="https://doi.org/10.3390/ani15020211" target="_blank">
-                <img src="../assets/image/paper-03.jpg" alt="" style="width: 100%; height: 280px;" />
-              </a>
-              <p style="text-align: center; font-size: 1rem; margin: 0rem">
-                鉴定出 10 个候选基因与杂交鲍生长差异显著相关 (Xiao et al., 2024)
-              </p>
-            </el-card>
-          </el-col>
-          <el-col :lg="8" :md="12" :sm="24" :xs="24">
-            <el-card shadow="hover" class="paper-card">
-              <a href="https://doi.org/10.1111/jwas.13118" target="_blank">
-                <img src="../assets/image/paper-04.jpg" alt="" style="width: 100%; height: 280px;" />
-              </a>
-              <p style="text-align: center; font-size: 1rem; margin: 0rem">
-                皱纹盘鲍普通肉与橘红肉肠道微生物群的差异以及饲料对鲍鱼肠道微生物群的影响 (Wei et al., 2025)
-              </p>
-            </el-card>
-          </el-col>
-          <el-col :lg="8" :md="12" :sm="24" :xs="24">
-            <el-card shadow="hover" class="paper-card">
-              <a href="https://doi.org/10.1016/j.envres.2024.120324" target="_blank">
-                <img src="../assets/image/paper-05.jpg" alt="" style="width: 100%; height: 280px;" />
-              </a>
-              <p style="text-align: center; font-size: 1rem; margin: 0rem">
-                耐缺氧能力与耐热能力之间的弱相关性增加了鲍鱼对气候变化的易感性 (Shen et al., 2024)
-              </p>
-            </el-card>
-          </el-col>
-          <el-col :lg="8" :md="12" :sm="24" :xs="24">
-            <el-card shadow="hover" class="paper-card">
-              <a href="https://doi.org/10.1016/j.aquaculture.2024.741657" target="_blank">
-                <img src="../assets/image/paper-06.jpg" alt="" style="width: 100%; height: 280px;" />
-              </a>
-              <p style="text-align: center; font-size: 1rem; margin: 0rem">
-                杂交鲍（皱纹盘鲍♀× 绿鲍♂）转录组分析揭示非加性效应促成福建初夏水温下的生长杂种优势 (Huang et al., 2024)
-              </p>
-            </el-card>
-          </el-col>
-        </el-row>
-
-        <br />
-        <br />
-        <br />
-        <h1>4. Updates & History 更新历史:</h1>
-        <el-divider content-position="left">Updates & History 更新历史:</el-divider>
-        <div style="
-            height: 580px;
-            overflow: auto;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0px 0px 10px #eeeeee;
-            border: 1px solid #cdcdcd;
-            background-color: #ffffff;
-          ">
-          <el-timeline>
-            <el-timeline-item timestamp="2025-06-20" placement="top" type="primary" size="large">
-              <el-card shadow="hover">
-                <h3>
-                  完善和美化布局
-                </h3>
-                1. 完成 MySQL 数据库表结构设计与初始化。
-                <br />
-                <br />
-                2. 新增树形结构数据转换与展示功能。
-                <br />
-                <br />
-                3. 集成 ECharts，支持首页统计图表展示。
-                <br />
-                <br />
-                4. 增加用户登录状态检测与跳转逻辑。
-                <br />
-                <br />
-                5. 增加页面顶部和底部组件，统一站点风格。
+          <!-- Stats Cards -->
+          <el-row :gutter="20" class="stats-row">
+            <el-col :lg="4" :md="8" :sm="12" :xs="24" v-for="(stat, index) in stats" :key="index">
+              <el-card shadow="hover" class="stats-card">
+                <div class="stats-icon">
+                  <el-icon :size="28"><component :is="stat.icon" /></el-icon>
+                </div>
+                <div class="stats-number">{{ stat.number }}</div>
+                <div class="stats-divider"></div>
+                <div class="stats-label" v-html="stat.label"></div>
               </el-card>
-            </el-timeline-item>
-            <el-timeline-item timestamp="2025-06-19" placement="top" type="primary" size="large">
-              <el-card shadow="hover">
-                <h3>
-                  集成地图与动态渲染
-                </h3>
-                1. 新增论文与新闻板块，支持图片和外链展示。
-                <br />
-                <br />
-                2. 集成 OpenLayers 地图，展示鲍养殖基地地理分布。
-                <br />
-                <br />
-                3. 实现地图坐标点的动态渲染与样式美化。
-                <br />
-                <br />
-                4. 优化页面自适应，提升移动端浏览体验。
-                <br />
-                <br />
-                5. 增加数据库更新历史时间线，便于追踪项目进展。
-              </el-card>
-            </el-timeline-item>
-            <el-timeline-item timestamp="2025-06-18" placement="top" type="primary" size="large">
-              <el-card shadow="hover">
-                <h3>
-                  初步完成首页设计与布局
-                </h3>
-                1. 完成鲍种质资源数据库首页设计与布局。
-                <br />
-                <br />
-                2. 集成 Element Plus 组件库，实现响应式页面布局。
-                <br />
-                <br />
-                3. 新增首页轮播图，展示主要鲍鱼物种图片。
-                <br />
-                <br />
-                4. 增加鲍鱼种质资源统计卡片，直观显示各类数据。
-                <br />
-                <br />
-                5. 完成鲍鱼种质资源概览图的展示功能。
-              </el-card>
-            </el-timeline-item>
-          </el-timeline>
-        </div>
+            </el-col>
+          </el-row>
+        </section>
 
-        <br />
-        <br />
-        <br />
-        <h1>5. Abalone bases 鲍养殖基地:</h1>
-        <el-divider content-position="left">Abalone bases 鲍养殖基地</el-divider>
-        <el-card :body-style="{ padding: '0px' }" style="width: 97%; height: 520px" shadow="hover">
-          <h3 style="text-algin: center">
-            &nbsp &nbsp Bases Location (Coordinates)
-          </h3>
-          <div id="about-map" style="width: 100%; height: 520px"></div>
-        </el-card>
-        <br />
-        <br />
+        <!-- Section 2: Overview -->
+        <section class="content-section">
+          <h1>2. Overview & Tree 鲍种质资源概览图</h1>
+          <el-card shadow="hover" class="overview-card">
+            <img src="../assets/image/Overview.png" alt="Overview" class="overview-image" />
+          </el-card>
+        </section>
 
+        <!-- Section 3: Publications -->
+        <section class="content-section">
+          <h1>3. Publications & News 论文发表与新讯</h1>
+          <el-row :gutter="20" class="papers-row">
+            <el-col :lg="8" :md="12" :sm="24" :xs="24" v-for="(paper, index) in papers" :key="index">
+              <el-card shadow="hover" class="paper-card">
+                <a :href="paper.link" target="_blank" class="paper-link">
+                  <img :src="paper.image" :alt="paper.title" class="paper-image" />
+                </a>
+                <div class="paper-title">{{ paper.title }}</div>
+              </el-card>
+            </el-col>
+          </el-row>
+        </section>
+
+        <!-- Section 4: Timeline -->
+        <section class="content-section">
+          <h1>4. Updates & History 更新历史</h1>
+          <el-card shadow="hover" class="timeline-card">
+            <el-timeline>
+              <el-timeline-item
+                v-for="(item, index) in timelineItems"
+                :key="index"
+                :timestamp="item.date"
+                placement="top"
+                type="primary"
+                size="large"
+              >
+                <el-card shadow="hover">
+                  <h3>{{ item.title }}</h3>
+                  <ul class="timeline-list">
+                    <li v-for="(desc, i) in item.descriptions" :key="i">{{ desc }}</li>
+                  </ul>
+                </el-card>
+              </el-timeline-item>
+            </el-timeline>
+          </el-card>
+        </section>
+
+        <!-- Section 5: Map -->
+        <section class="content-section">
+          <h1>5. Abalone bases 鲍养殖基地</h1>
+          <el-card shadow="hover" class="map-card">
+            <template #header>
+              <div class="map-header">
+                <el-icon><Location /></el-icon>
+                <span>Bases Location (Coordinates)</span>
+              </div>
+            </template>
+            <div id="about-map" class="map-container"></div>
+          </el-card>
+        </section>
       </el-main>
       <el-footer>
         <AppFooter />
@@ -470,108 +290,456 @@ export default {
 </template>
 
 <style scoped>
-.el-main {
-  padding: 10px 10%;
-  margin-top: 100px;
-}
-
-.el-carousel__item h3 {
-  color: #475669;
-  opacity: 0.5;
-  line-height: 200px;
-  margin: 0;
-  text-align: center;
-}
-
-.el-carousel__item:nth-child(2n) {
-  background-color: #000000;
-}
-
-.el-carousel__item:nth-child(2n + 1) {
-  background-color: #000000;
-}
-
-.el-carousel__item--card {
-  border-radius: 10px;
+/* ==================== Carousel ==================== */
+.hero-carousel {
+  margin-bottom: 48px;
+  border-radius: 16px;
+  overflow: visible;
 }
 
 :deep(.el-carousel__container) {
   height: 360px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Card-type: inactive slide styling */
+:deep(.el-carousel__item--card) {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+:deep(.el-carousel__item--card.is-active) {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
+}
+
+/* Inactive slides overlay */
+:deep(.el-carousel__item--card:not(.is-active))::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  pointer-events: none;
+  transition: background 0.5s ease;
+}
+
+:deep(.el-carousel__item--card.is-active)::after {
+  background: transparent;
 }
 
 .carousel-image {
   width: 100%;
+  height: 100%;
   object-fit: cover;
+  border-radius: 12px;
 }
 
+/* Caption */
 .slide-caption {
-  width: 80%;
-  margin: 100% 10% 1% 10%;
-  height: 40px;
   position: absolute;
-  bottom: 0px;
-  background-color: #ffffff55;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 20px 20px;
+  background: linear-gradient(transparent, rgba(0, 30, 45, 0.85));
   color: #ffffff;
   text-align: center;
-  border-radius: 10px;
-  font-size: 1.5em;
-  font-weight: bold;
+  font-size: 1.25rem;
+  font-weight: 600;
   font-style: italic;
+  letter-spacing: 0.3px;
+  border-radius: 0 0 12px 12px;
+  transform: translateY(8px);
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+
+:deep(.el-carousel__item.is-active) .slide-caption {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Arrows */
+:deep(.el-carousel__arrow) {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+:deep(.el-carousel__arrow:hover) {
+  background: rgba(0, 106, 148, 0.85);
+  border-color: transparent;
+  color: #ffffff;
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px rgba(0, 106, 148, 0.3);
+}
+
+:deep(.el-carousel__arrow--left) {
+  left: 16px;
+}
+
+:deep(.el-carousel__arrow--right) {
+  right: 16px;
+}
+
+/* Indicators */
+:deep(.el-carousel__indicators) {
+  bottom: 14px;
+}
+
+:deep(.el-carousel__indicator) {
+  padding: 4px;
+}
+
+:deep(.el-carousel__indicator .el-carousel__button) {
+  width: 24px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+  transition: all 0.35s ease;
+}
+
+:deep(.el-carousel__indicator.is-active .el-carousel__button) {
+  width: 36px;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Section Styles */
+.content-section {
+  margin-bottom: 48px;
+}
+
+.content-section h1 {
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e8f4f8;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.content-section h1::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #006a94, #4db8d8);
+  border-radius: 1px;
+  transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+}
+
+.content-section h1:hover::after {
+  width: 140px;
+}
+
+/* Intro Card */
+.intro-card {
+  margin-bottom: 24px;
+  border-left: 3px solid transparent;
+  transition: border-color 0.4s ease, box-shadow 0.3s ease;
+}
+
+.intro-card:hover {
+  border-left-color: #006a94;
+  box-shadow: 0 4px 20px rgba(0, 106, 148, 0.12);
+}
+
+.intro-text {
+  margin-bottom: 16px;
+  line-height: 1.8;
+  text-align: justify;
+  color: #2c3e50;
+}
+
+.intro-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Stats Cards */
+.stats-row {
+  margin-top: 24px;
+}
+
+.stats-row :deep(.el-col) {
+  display: flex;
 }
 
 .stats-card {
-  background-color: #1a69d0;
+  background: linear-gradient(135deg, #006a94 0%, #004a6c 100%);
   color: #ffffff;
-  font-weight: bold;
-  height: 120px;
+  text-align: center;
+  margin-bottom: 16px;
+  border: none;
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.2),
+              box-shadow 0.35s ease,
+              background 0.4s ease;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-card :deep(.el-card__body) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 20px 16px;
+}
+
+.stats-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 106, 148, 0.35);
+  background: linear-gradient(135deg, #0078a8 0%, #005a80 100%);
+}
+
+.stats-icon {
+  opacity: 0.7;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+}
+
+.stats-card:hover .stats-icon {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.22);
+  transform: scale(1.1);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.15);
+}
+
+.stats-number {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+}
+
+.stats-card:hover .stats-number {
+  transform: scale(1.06);
+}
+
+.stats-divider {
+  width: 40px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 0 auto 12px;
+  flex-shrink: 0;
+  transition: width 0.35s ease, background 0.35s ease;
+}
+
+.stats-card:hover .stats-divider {
+  width: 56px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.stats-label {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  opacity: 0.95;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Overview Card */
+.overview-card {
+  overflow: hidden;
+  transition: box-shadow 0.4s ease;
+}
+
+.overview-image {
+  width: 100%;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.overview-card:hover {
+  box-shadow: 0 6px 24px rgba(0, 106, 148, 0.14) !important;
+}
+
+.overview-card:hover .overview-image {
+  transform: scale(1.03);
+}
+
+/* Papers Grid */
+.papers-row {
+  margin-top: 24px;
 }
 
 .paper-card {
-  height: 380px;
-}
-
-.el-col {
   margin-bottom: 20px;
+  overflow: hidden;
+  height: auto;
+  border-radius: 14px;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2),
+              box-shadow 0.3s ease;
 }
 
-@media (max-width: 1920px) {
+.paper-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.paper-link {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  border-radius: 14px;
+}
+
+.paper-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0, 58, 82, 0.5));
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  border-radius: 14px;
+}
+
+.paper-card:hover .paper-link::after {
+  opacity: 1;
+}
+
+.paper-image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 14px;
+  transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.paper-card:hover .paper-image {
+  transform: scale(1.06);
+}
+
+.paper-title {
+  padding: 16px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: center;
+  color: #2c3e50;
+  transition: color 0.3s ease;
+}
+
+.paper-card:hover .paper-title {
+  color: #006a94;
+}
+
+/* Timeline */
+.timeline-card {
+  padding: 20px;
+}
+
+.timeline-card :deep(.el-card__body) {
+  padding: 24px;
+}
+
+.timeline-card :deep(.el-timeline-item__node) {
+  transition: box-shadow 0.3s ease;
+}
+
+.timeline-card :deep(.el-timeline-item:hover .el-timeline-item__node) {
+  box-shadow: 0 0 0 4px rgba(0, 106, 148, 0.18);
+}
+
+.timeline-list {
+  margin: 12px 0 0 0;
+  padding-left: 20px;
+}
+.timeline-list li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+  color: #555;
+  transition: color 0.2s ease, padding-left 0.3s ease;
+}
+
+.timeline-list li:hover {
+  color: #006a94;
+  padding-left: 4px;
+}
+
+/* Map */
+.map-card {
+  overflow: hidden;
+  transition: box-shadow 0.4s ease;
+}
+
+.map-card:hover {
+  box-shadow: 0 6px 24px rgba(0, 106, 148, 0.14) !important;
+}
+
+.map-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #006a94;
+}
+
+.map-container {
+  width: 100%;
+  height: 480px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
   :deep(.el-carousel__container) {
-    height: 340px;
+    height: 300px;
   }
 
-  .el-main {
-    padding: 10px 10%;
+  .stats-number {
+    font-size: 1.6rem;
   }
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 768px) {
   :deep(.el-carousel__container) {
-    height: 270px;
+    height: 220px;
   }
 
-  .el-main {
-    padding: 10px 10%;
-  }
-}
-
-@media (max-width: 720px) {
-  :deep(.el-carousel__container) {
-    height: 180px;
+  .slide-caption {
+    font-size: 1rem;
+    padding: 12px;
   }
 
-  .el-main {
-    padding: 10px 3%;
+  .stats-number {
+    font-size: 1.4rem;
   }
-}
 
-.el-card {
-  text-align: justify;
-  border-radius: 10px;
-}
+  .stats-label {
+    font-size: 0.75rem;
+  }
 
-:deep(.el-timeline-item__timestamp) {
-  color: #000000;
-  font-size: 1.5em;
-  font-weight: bold;
+  .paper-image {
+    height: 200px;
+  }
+
+  .map-container {
+    height: 360px;
+  }
 }
 </style>
