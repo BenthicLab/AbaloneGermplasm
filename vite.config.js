@@ -5,6 +5,7 @@ import fs from "node:fs";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/AbaloneGermplasm/',
   plugins: [
     vue(),
     {

@@ -92,7 +92,7 @@ export default {
           this.tableData = JSON.parse(localData);
         } else {
           // 从静态 JSON 文件加载数据
-          const res = await axios.get('/data/germplasm.json');
+          const res = await axios.get(`${import.meta.env.BASE_URL}data/germplasm.json`);
           if (res.data.status === 'success') {
             this.tableData = res.data.results;
             // 保存到 localStorage
