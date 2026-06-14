@@ -6,7 +6,8 @@ export function setCookie(c_name, value, expire) {
     "=" +
     encodeURIComponent(value) +
     "; expires =" +
-    date.toGMTString();
+    date.toGMTString() +
+    "; path=/";
   console.log(document.cookie);
 }
 
@@ -24,7 +25,7 @@ export function getCookie(c_name) {
 }
 
 export function delCookie(c_name) {
-  setCookie(c_name, "", -1);
+  document.cookie = c_name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
 }
 
 export function delAllCookie() {

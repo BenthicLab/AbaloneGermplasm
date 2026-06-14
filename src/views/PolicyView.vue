@@ -3,6 +3,7 @@ import AppHeader from "../components/AppHeader.vue";
 import AppFooter from "../components/AppFooter.vue";
 import { Share, Medal, Warning, Guide, Document, Aim } from "@element-plus/icons-vue";
 import { useScrollAnimation } from '../composables/useScrollAnimation';
+import { getCookie } from "../assets/js/cookie.js";
 
 export default {
   components: { AppHeader, AppFooter, Share, Medal, Warning, Guide, Document, Aim },
@@ -11,6 +12,7 @@ export default {
   },
   data() {
     return {
+      email: "",
       protections: [
         {
           icon: 'Warning',
@@ -102,6 +104,12 @@ export default {
         { icon: 'Warning', title: 'policy.priorities.awareness.title', desc: 'policy.priorities.awareness.desc' },
       ],
     };
+  },
+  mounted() {
+    this.email = getCookie("username");
+    if (this.email == "") {
+      this.$router.push("/login");
+    }
   },
 };
 </script>
