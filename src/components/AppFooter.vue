@@ -40,7 +40,7 @@ export default {
 
 <style scoped>
 .footer-row {
-  background: linear-gradient(160deg, #003652 0%, #004868 50%, #003652 100%);
+  background: var(--bg-footer);
   padding: 36px 32px 24px;
   color: #ecf0f1;
   position: relative;

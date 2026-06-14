@@ -403,7 +403,7 @@ export default {
 
 :deep(.el-carousel__indicator.is-active .el-carousel__button) {
   width: 36px;
-  background: #ffffff;
+  background: var(--text-on-primary);
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
@@ -415,7 +415,7 @@ export default {
 .content-section h1 {
   margin-bottom: 20px;
   padding-bottom: 12px;
-  border-bottom: 2px solid #e8f4f8;
+  border-bottom: 2px solid var(--border-primary);
   position: relative;
   transition: color 0.3s ease;
 }
@@ -427,7 +427,7 @@ export default {
   left: 0;
   width: 60px;
   height: 2px;
-  background: linear-gradient(90deg, #006a94, #4db8d8);
+  background: var(--divider-accent);
   border-radius: 1px;
   transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
 }
@@ -444,15 +444,15 @@ export default {
 }
 
 .intro-card:hover {
-  border-left-color: #006a94;
-  box-shadow: 0 4px 20px rgba(0, 106, 148, 0.12);
+  border-left-color: var(--accent-primary);
+  box-shadow: 0 4px 20px var(--shadow-accent);
 }
 
 .intro-text {
   margin-bottom: 16px;
   line-height: 1.8;
   text-align: justify;
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 .intro-text:last-child {
@@ -469,7 +469,7 @@ export default {
 }
 
 .stats-card {
-  background: linear-gradient(135deg, #006a94 0%, #004a6c 100%);
+  background: var(--stats-gradient);
   color: #ffffff;
   text-align: center;
   margin-bottom: 16px;
@@ -492,8 +492,8 @@ export default {
 
 .stats-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(0, 106, 148, 0.35);
-  background: linear-gradient(135deg, #0078a8 0%, #005a80 100%);
+  box-shadow: 0 12px 32px var(--shadow-accent);
+  background: var(--stats-hover-gradient);
 }
 
 .stats-icon {
@@ -566,7 +566,7 @@ export default {
 }
 
 .overview-card:hover {
-  box-shadow: 0 6px 24px rgba(0, 106, 148, 0.14) !important;
+  box-shadow: 0 6px 24px var(--shadow-accent) !important;
 }
 
 .overview-card:hover .overview-image {
@@ -630,12 +630,12 @@ export default {
   font-size: 0.95rem;
   line-height: 1.5;
   text-align: center;
-  color: #2c3e50;
+  color: var(--text-primary);
   transition: color 0.3s ease;
 }
 
 .paper-card:hover .paper-title {
-  color: #006a94;
+  color: var(--accent-primary);
 }
 
 /* Timeline */
@@ -652,7 +652,7 @@ export default {
 }
 
 .timeline-card :deep(.el-timeline-item:hover .el-timeline-item__node) {
-  box-shadow: 0 0 0 4px rgba(0, 106, 148, 0.18);
+  box-shadow: 0 0 0 4px var(--timeline-hover-ring);
 }
 
 .timeline-list {
@@ -662,12 +662,12 @@ export default {
 .timeline-list li {
   margin-bottom: 8px;
   line-height: 1.6;
-  color: #555;
+  color: var(--text-secondary);
   transition: color 0.2s ease, padding-left 0.3s ease;
 }
 
 .timeline-list li:hover {
-  color: #006a94;
+  color: var(--accent-primary);
   padding-left: 4px;
 }
 
@@ -678,7 +678,7 @@ export default {
 }
 
 .map-card:hover {
-  box-shadow: 0 6px 24px rgba(0, 106, 148, 0.14) !important;
+  box-shadow: 0 6px 24px var(--shadow-accent) !important;
 }
 
 .map-header {
@@ -687,7 +687,7 @@ export default {
   gap: 8px;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #006a94;
+  color: var(--accent-primary);
 }
 
 .map-container {

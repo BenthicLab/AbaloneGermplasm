@@ -231,7 +231,7 @@ export default {
   border-radius: 14px;
   overflow: hidden;
   margin-bottom: 32px;
-  background: linear-gradient(135deg, #003652 0%, #006a94 40%, #004a6c 100%);
+  background: var(--bg-hero);
 }
 
 .policy-hero-overlay {
@@ -282,13 +282,13 @@ export default {
 .divider-title {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #006a94;
+  color: var(--accent-primary);
 }
 
 .policy-intro-text {
   font-size: 0.95rem;
   line-height: 1.8;
-  color: #4a5568;
+  color: var(--text-secondary);
   max-width: 900px;
 }
 
@@ -305,17 +305,17 @@ export default {
 }
 
 .policy-card {
-  background: #ffffff;
+  background: var(--bg-card);
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
-  border: 1px solid #eef1f5;
+  box-shadow: 0 2px 16px var(--shadow-sm);
+  border: 1px solid var(--border-card);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .policy-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 28px var(--shadow-lg);
 }
 
 .policy-card-image {
@@ -357,7 +357,7 @@ export default {
 .policy-card-body p {
   font-size: 0.88rem;
   line-height: 1.75;
-  color: #555;
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -373,23 +373,23 @@ export default {
 }
 
 .species-card {
-  background: #ffffff;
+  background: var(--bg-card);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-  border: 1px solid #eef1f5;
+  box-shadow: 0 2px 12px var(--shadow-sm);
+  border: 1px solid var(--border-card);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .species-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px var(--shadow-lg);
 }
 
 .species-card-image {
   height: 150px;
   overflow: hidden;
-  background: #f0f7fa;
+  background: var(--bg-secondary);
 }
 
 .species-card-image img {
@@ -411,13 +411,13 @@ export default {
 .species-name {
   font-size: 1rem;
   font-weight: 600;
-  color: #1a3a4a;
+  color: var(--text-heading);
   margin: 0 0 2px 0;
 }
 
 .species-latin {
   font-size: 0.8rem;
-  color: #888;
+  color: var(--text-tertiary);
   margin: 0 0 10px 0;
 }
 
@@ -439,28 +439,28 @@ export default {
 }
 
 .badge-danger {
-  background: #ffebee;
-  color: #c62828;
+  background: var(--badge-danger-bg);
+  color: var(--badge-danger-color);
 }
 
 .badge-warning {
-  background: #fff3e0;
-  color: #e65100;
+  background: var(--badge-warning-bg);
+  color: var(--badge-warning-color);
 }
 
 .badge-info {
-  background: #e3f2fd;
-  color: #1565c0;
+  background: var(--badge-info-bg);
+  color: var(--badge-info-color);
 }
 
 .badge-cites {
-  background: #fce4ec;
-  color: #c62828;
+  background: var(--badge-cites-bg);
+  color: var(--badge-cites-color);
 }
 
 .species-status {
   font-size: 0.8rem;
-  color: #5a6775;
+  color: var(--text-secondary);
   line-height: 1.5;
   margin: 0;
 }
@@ -480,18 +480,18 @@ export default {
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  background: #ffffff;
+  background: var(--bg-card);
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-  border: 1px solid #eef1f5;
+  box-shadow: 0 2px 10px var(--shadow-sm);
+  border: 1px solid var(--border-card);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .priority-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  border-color: #d0e8f2;
+  box-shadow: 0 6px 20px var(--shadow-lg);
+  border-color: var(--border-hover);
 }
 
 .priority-icon {
@@ -499,23 +499,23 @@ export default {
   height: 48px;
   min-width: 48px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #e8f4f8, #d0e8f2);
+  background: var(--bg-tertiary);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #006a94;
+  color: var(--accent-primary);
 }
 
 .priority-content h3 {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #1a3a4a;
+  color: var(--text-heading);
   margin: 0 0 6px 0;
 }
 
 .priority-content p {
   font-size: 0.84rem;
-  color: #5a6775;
+  color: var(--text-secondary);
   line-height: 1.65;
   margin: 0;
 }
@@ -527,11 +527,11 @@ export default {
 }
 
 .cta-content {
-  background: linear-gradient(135deg, #003652 0%, #006a94 50%, #004a6c 100%);
+  background: var(--accent-gradient);
   border-radius: 14px;
   padding: 40px 32px;
   text-align: center;
-  color: #ffffff;
+  color: var(--text-on-primary);
 }
 
 .cta-content .el-icon {
@@ -542,7 +542,7 @@ export default {
 .cta-content h2 {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-on-primary);
   margin: 0 0 10px 0;
 }
 

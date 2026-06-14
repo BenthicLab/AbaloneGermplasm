@@ -243,10 +243,10 @@ export default {
               </el-input>
             </el-form-item>
             <div style="text-align: right; margin-top: 30px">
-              <el-button type="primary" @click="login" style="color: #000000">
+              <el-button type="primary" @click="login">
                 {{ $t('login.loginBtn') }}
               </el-button>
-              <el-button type="warning" @click="resetLoginForm" style="text-algin: right; color: #000000">
+              <el-button type="warning" @click="resetLoginForm">
                 {{ $t('login.resetBtn') }}
               </el-button>
             </div>
@@ -292,10 +292,10 @@ export default {
               </el-input>
             </el-form-item>
             <div style="text-align: right">
-              <el-button type="primary" @click="signup" style="color: #000000">
+              <el-button type="primary" @click="signup">
                 {{ $t('login.signupBtn') }}
               </el-button>
-              <el-button type="warning" @click="resetSignupForm" style="text-algin: right; color: #000000">
+              <el-button type="warning" @click="resetSignupForm">
                 {{ $t('login.resetBtn') }}
               </el-button>
             </div>
@@ -336,7 +336,7 @@ export default {
   top: -40px;
   left: 50%;
   transform: translateX(-50%);
-  background: #ffffff;
+  background: var(--bg-primary);
   z-index: 10;
 }
 
@@ -354,7 +354,7 @@ export default {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   border: none;
   padding: 40px 32px 32px;
-  background: rgba(255, 255, 255, 0.98);
+  background: var(--bg-card);
   backdrop-filter: blur(10px);
 }
 
@@ -369,20 +369,20 @@ export default {
 :deep(.el-tabs__item) {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #2c3e50;
+  color: var(--text-primary);
   transition: all 0.3s ease;
 }
 
 :deep(.el-tabs__item:hover) {
-  color: #006a94;
+  color: var(--accent-primary);
 }
 
 :deep(.el-tabs__item.is-active) {
-  color: #006a94;
+  color: var(--accent-primary);
 }
 
 :deep(.el-tabs__active-bar) {
-  background-color: #006a94;
+  background-color: var(--accent-primary);
   height: 3px;
 }
 
@@ -391,52 +391,52 @@ export default {
 }
 
 :deep(.el-form-item__label) {
-  color: #2c3e50;
+  color: var(--text-primary);
   font-size: 0.95rem;
   font-weight: 600;
 }
 
 :deep(.el-input__wrapper) {
   border-radius: 8px;
-  box-shadow: 0 0 0 1px #dcdfe6 inset;
+  box-shadow: 0 0 0 1px var(--border-tertiary) inset;
   transition: all 0.3s ease;
-  background: #ffffff;
+  background: var(--bg-input);
 }
 
 :deep(.el-input__wrapper:hover) {
-  box-shadow: 0 0 0 1px #006a94 inset;
+  box-shadow: 0 0 0 1px var(--accent-primary) inset;
 }
 
 :deep(.el-input__wrapper.is-focus) {
-  box-shadow: 0 0 0 1px #006a94 inset;
+  box-shadow: 0 0 0 1px var(--accent-primary) inset;
 }
 
 :deep(.el-input__inner) {
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 :deep(.el-input__inner::placeholder) {
-  color: #909399;
+  color: var(--text-muted);
 }
 
 :deep(.el-input__icon) {
-  color: #006a94;
+  color: var(--accent-primary);
 }
 
 :deep(.el-button--primary) {
-  background: linear-gradient(135deg, #006a94, #004a6c);
+  background: var(--accent-gradient);
   border: none;
   border-radius: 8px;
   padding: 12px 24px;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--text-on-primary);
   transition: all 0.3s ease;
 }
 
 :deep(.el-button--primary:hover) {
-  background: linear-gradient(135deg, #007aa7, #005a7e);
+  background: var(--accent-gradient-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 106, 148, 0.4);
+  box-shadow: 0 6px 20px var(--shadow-accent);
 }
 
 :deep(.el-button--warning) {
@@ -460,20 +460,20 @@ export default {
 }
 
 :deep(.el-alert) {
-  background: linear-gradient(135deg, #fef0f0 0%, #fde2e2 100%);
-  border: 1px solid #fbc4c4;
+  background: var(--bg-alert);
+  border: 1px solid var(--border-alert);
   border-radius: 8px;
   padding: 12px 16px;
 }
 
 :deep(.el-alert__content) {
-  color: #f56c6c;
+  color: var(--text-alert);
   font-size: 0.9rem;
 }
 
 h5 {
   text-align: center;
-  color: #909399;
+  color: var(--text-muted);
   font-size: 0.85rem;
   margin-top: 16px;
   font-weight: normal;

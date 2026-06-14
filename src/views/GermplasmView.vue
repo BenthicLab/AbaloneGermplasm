@@ -123,26 +123,35 @@ export default {
           type: 'warning',
           confirmButtonText: this.$t('germplasm.deleteBtn'),
           cancelButtonText: this.$t('germplasm.cancel'),
-          confirmButtonClass: 'el-button--danger',
+          confirmButtonClass: 'el-button--danger is-disabled',
+          beforeClose: (action, instance, done) => {
+            if (action === 'confirm') {
+              // 暂时禁用确认删除功能
+              ElMessage.warning('删除功能暂时不可用');
+              return;
+            }
+            done();
+          },
         }
       )
-        .then(async () => {
-          try {
-            await axios.delete(`${API_BASE}/${row.id}`);
-            ElMessage.success(this.$t('germplasm.recordDeleted'));
-            await this.fetchData();
-          } catch (e) {
-            ElMessage.error(this.$t('germplasm.deleteFailed'));
-          }
-        })
+        .then(() => {})
         .catch(() => {});
     },
     handleRowStyle({ row }) {
       const species = row.species || '';
-      if (species.includes('hannai') && row.pop) return { backgroundColor: '#e8f5e9', color: '#000' };
-      if (species.includes('hannai') && row.strain) return { backgroundColor: '#fce4ec', color: '#000' };
-      if (species.includes('fulgens')) return { backgroundColor: '#e8f5e9', color: '#000' };
-      if (species.includes('\u2640') || species.includes('\u2642')) return { backgroundColor: '#e3f2fd', color: '#000' };
+      const isDark = document.documentElement.classList.contains('dark');
+      if (species.includes('hannai') && row.pop) {
+        return { backgroundColor: isDark ? 'var(--row-population-bg)' : '#e8f5e9', color: isDark ? 'var(--row-population-color)' : '#000' };
+      }
+      if (species.includes('hannai') && row.strain) {
+        return { backgroundColor: isDark ? 'var(--row-strain-bg)' : '#fce4ec', color: isDark ? 'var(--row-strain-color)' : '#000' };
+      }
+      if (species.includes('fulgens')) {
+        return { backgroundColor: isDark ? 'var(--row-fulgens-bg)' : '#e8f5e9', color: isDark ? 'var(--row-fulgens-color)' : '#000' };
+      }
+      if (species.includes('\u2640') || species.includes('\u2642')) {
+        return { backgroundColor: isDark ? 'var(--row-sex-bg)' : '#e3f2fd', color: isDark ? 'var(--row-sex-color)' : '#000' };
+      }
       return {};
     },
   },
@@ -280,34 +289,34 @@ export default {
 .page-title {
   font-size: 1.7rem;
   font-weight: 700;
-  color: #1a3a4a;
+  color: var(--text-heading);
   margin: 0;
   padding-left: 14px;
-  border-left: 4px solid #006a94;
+  border-left: 4px solid var(--accent-primary);
 }
 
 .add-btn {
   border-radius: 8px;
   font-weight: 600;
   padding: 10px 24px;
-  background: #006a94;
-  border-color: #006a94;
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
   transition: all 0.25s ease;
 }
 
 .add-btn:hover {
-  background: #005274;
-  border-color: #005274;
+  background: var(--accent-secondary);
+  border-color: var(--accent-secondary);
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(0, 106, 148, 0.35);
+  box-shadow: 0 4px 14px var(--shadow-accent);
 }
 
 /* Table */
 .table-wrapper {
-  background: #ffffff;
+  background: var(--bg-card);
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 16px var(--shadow-sm);
 }
 
 :deep(.el-table) {
@@ -315,11 +324,11 @@ export default {
 }
 
 :deep(.el-table th) {
-  background: linear-gradient(180deg, #f5f8fa 0%, #eaf2f6 100%) !important;
-  color: #1a3a4a;
+  background: var(--bg-table-header) !important;
+  color: var(--text-heading);
   font-weight: 600;
   font-size: 0.9rem;
-  border-bottom: 2px solid #e0ecf2 !important;
+  border-bottom: 2px solid var(--border-table) !important;
 }
 
 :deep(.el-table td) {
@@ -327,7 +336,7 @@ export default {
 }
 
 :deep(.el-table__row:hover > td) {
-  background-color: #f0f7fb !important;
+  background-color: var(--bg-table-hover) !important;
 }
 
 :deep(.el-table .el-table__header-wrapper th) {
@@ -335,22 +344,22 @@ export default {
 }
 
 :deep(.el-table--striped .el-table__body tr.el-table__row--striped td) {
-  background: #fafcfd;
+  background: var(--bg-table-stripe);
 }
 
 /* Search input in table header */
 :deep(.el-input__wrapper) {
   border-radius: 8px;
-  box-shadow: 0 0 0 1px #dcdfe6 inset;
+  box-shadow: 0 0 0 1px var(--border-tertiary) inset;
   transition: all 0.25s ease;
 }
 
 :deep(.el-input__wrapper:hover) {
-  box-shadow: 0 0 0 1px #006a94 inset;
+  box-shadow: 0 0 0 1px var(--accent-primary) inset;
 }
 
 :deep(.el-input__wrapper.is-focus) {
-  box-shadow: 0 0 0 1px #006a94 inset, 0 0 0 3px rgba(0, 106, 148, 0.12);
+  box-shadow: 0 0 0 1px var(--accent-primary) inset, 0 0 0 3px var(--shadow-accent);
 }
 
 /* ===== Action Buttons ===== */
@@ -365,30 +374,30 @@ export default {
 
 /* Edit button */
 .edit-btn {
-  background: #006a94;
+  background: var(--accent-primary);
   color: #ffffff;
-  border: 1px solid #006a94;
+  border: 1px solid var(--accent-primary);
 }
 
 .edit-btn:hover {
-  background: #005274;
-  border-color: #005274;
+  background: var(--accent-secondary);
+  border-color: var(--accent-secondary);
   transform: translateY(-1px);
-  box-shadow: 0 3px 10px rgba(0, 106, 148, 0.3);
+  box-shadow: 0 3px 10px var(--shadow-accent);
 }
 
 /* Delete button */
 .delete-btn {
-  background: #d94343;
-  color: #ffffff;
-  border: 1px solid #d94343;
+  background: var(--delete-bg);
+  color: var(--delete-color);
+  border: 1px solid var(--delete-bg);
 }
 
 .delete-btn:hover {
-  background: #c23535;
-  border-color: #c23535;
+  background: var(--delete-hover-bg);
+  border-color: var(--delete-hover-bg);
   transform: translateY(-1px);
-  box-shadow: 0 3px 10px rgba(217, 67, 67, 0.3);
+  box-shadow: 0 3px 10px var(--shadow-lg);
 }
 
 /* Dialog */
@@ -398,13 +407,13 @@ export default {
 
 :deep(.form-dialog .el-dialog__header) {
   padding: 24px 28px 16px;
-  border-bottom: 1px solid #eef2f6;
+  border-bottom: 1px solid var(--border-dialog);
 }
 
 :deep(.form-dialog .el-dialog__title) {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #1a3a4a;
+  color: var(--text-heading);
 }
 
 :deep(.form-dialog .el-dialog__body) {
@@ -413,7 +422,7 @@ export default {
 
 :deep(.form-dialog .el-dialog__footer) {
   padding: 16px 28px 24px;
-  border-top: 1px solid #eef2f6;
+  border-top: 1px solid var(--border-dialog);
 }
 
 .dialog-footer {
@@ -426,48 +435,48 @@ export default {
   border-radius: 8px;
   font-weight: 600;
   padding: 10px 24px;
-  background: #f5f5f5;
-  color: #555;
-  border: 1px solid #ddd;
+  background: var(--bg-button-cancel);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-tertiary);
 }
 
 .dialog-cancel-btn:hover {
-  background: #e8e8e8;
-  color: #333;
-  border-color: #ccc;
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+  border-color: var(--border-hover);
 }
 
 .dialog-save-btn {
   border-radius: 8px;
   font-weight: 600;
   padding: 10px 24px;
-  background: #006a94;
-  border-color: #006a94;
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
 }
 
 .dialog-save-btn:hover {
-  background: #005274;
-  border-color: #005274;
+  background: var(--accent-secondary);
+  border-color: var(--accent-secondary);
 }
 
 /* Form */
 .germplasm-form :deep(.el-form-item__label) {
   font-weight: 600;
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 .germplasm-form :deep(.el-input__wrapper) {
   border-radius: 8px;
-  box-shadow: 0 0 0 1px #dcdfe6 inset;
+  box-shadow: 0 0 0 1px var(--border-tertiary) inset;
   transition: all 0.25s ease;
 }
 
 .germplasm-form :deep(.el-input__wrapper:hover) {
-  box-shadow: 0 0 0 1px #006a94 inset;
+  box-shadow: 0 0 0 1px var(--accent-primary) inset;
 }
 
 .germplasm-form :deep(.el-input__wrapper.is-focus) {
-  box-shadow: 0 0 0 1px #006a94 inset, 0 0 0 3px rgba(0, 106, 148, 0.12);
+  box-shadow: 0 0 0 1px var(--accent-primary) inset, 0 0 0 3px var(--shadow-accent);
 }
 
 /* Responsive */

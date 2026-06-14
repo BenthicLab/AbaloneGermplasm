@@ -236,7 +236,7 @@
     "loginBtn": "用户登录",
     "signupBtn": "用户注册",
     "resetBtn": "重置表单",
-    "emailPlaceholder": "example@xxx.edu.cn",
+    "emailPlaceholder": "example{'@'}xxx.edu.cn",
     "noAccount": "如果您还没有账号，请注册！",
     "hasAccount": "如果您已有账号，请登录！",
     "emailRequired": "请输入邮箱作为用户名",

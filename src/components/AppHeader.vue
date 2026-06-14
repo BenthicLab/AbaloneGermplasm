@@ -260,8 +260,8 @@ export default {
   display: flex;
   align-items: center;
   height: 60px;
-  background: linear-gradient(160deg, #003652 0%, #00527a 30%, #004868 100%);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  background: var(--bg-header);
+  box-shadow: 0 2px 12px var(--shadow-md);
   padding: 0 24px;
   position: relative;
   z-index: 1000;

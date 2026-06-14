@@ -158,37 +158,37 @@ export default {
         <el-row :gutter="20">
           <el-col :lg="8" :md="12" :sm="24" :xs="24" style="margin-bottom: 20px;">
             <el-card shadow="hover" class="paper-card">
-              <img src="../assets/image/patent-01.jpg" alt="" style="width: 100%;" />
+              <img src="../assets/image/patent-01.jpg" alt="" style="width: 100%; border-radius: 8px;" />
               <p style="text-align: center; font-size: 1rem; margin: 12px 0 4px;">{{ $t('about.section3.software1') }}</p>
             </el-card>
           </el-col>
           <el-col :lg="8" :md="12" :sm="24" :xs="24" style="margin-bottom: 20px;">
             <el-card shadow="hover" class="paper-card">
-              <img src="../assets/image/patent-02.jpg" alt="" style="width: 100%;" />
+              <img src="../assets/image/patent-02.jpg" alt="" style="width: 100%; border-radius: 8px;" />
               <p style="text-align: center; font-size: 1rem; margin: 12px 0 4px;">{{ $t('about.section3.software2') }}</p>
             </el-card>
           </el-col>
           <el-col :lg="8" :md="12" :sm="24" :xs="24" style="margin-bottom: 20px;">
             <el-card shadow="hover" class="paper-card">
-              <img src="../assets/image/patent-03.jpg" alt="" style="width: 100%;" />
+              <img src="../assets/image/patent-03.jpg" alt="" style="width: 100%; border-radius: 8px;" />
               <p style="text-align: center; font-size: 1rem; margin: 12px 0 4px;">{{ $t('about.section3.software3') }}</p>
             </el-card>
           </el-col>
           <el-col :lg="8" :md="12" :sm="24" :xs="24" style="margin-bottom: 20px;">
             <el-card shadow="hover" class="paper-card">
-              <img src="../assets/image/patent-04.jpg" alt="" style="width: 100%;" />
+              <img src="../assets/image/patent-04.jpg" alt="" style="width: 100%; border-radius: 8px;" />
               <p style="text-align: center; font-size: 1rem; margin: 12px 0 4px;">{{ $t('about.section3.software4') }}</p>
             </el-card>
           </el-col>
           <el-col :lg="8" :md="12" :sm="24" :xs="24" style="margin-bottom: 20px;">
             <el-card shadow="hover" class="paper-card">
-              <img src="../assets/image/patent-05.jpg" alt="" style="width: 100%;" />
+              <img src="../assets/image/patent-05.jpg" alt="" style="width: 100%; border-radius: 8px;" />
               <p style="text-align: center; font-size: 1rem; margin: 12px 0 4px;">{{ $t('about.section3.software5') }}</p>
             </el-card>
           </el-col>
           <el-col :lg="8" :md="12" :sm="24" :xs="24" style="margin-bottom: 20px;">
             <el-card shadow="hover" class="paper-card">
-              <img src="../assets/image/patent-06.jpg" alt="" style="width: 100%;" />
+              <img src="../assets/image/patent-06.jpg" alt="" style="width: 100%; border-radius: 8px;" />
               <p style="text-align: center; font-size: 1rem; margin: 12px 0 4px;">{{ $t('about.section3.software6') }}</p>
             </el-card>
           </el-col>
@@ -235,10 +235,10 @@ export default {
 .section-title {
   font-size: 1.6rem;
   font-weight: 700;
-  color: #1a3a4a;
+  color: var(--text-heading);
   margin: 32px 0 20px 0;
   padding-bottom: 12px;
-  border-bottom: 3px solid #006a94;
+  border-bottom: 3px solid var(--accent-primary);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -248,7 +248,7 @@ export default {
   content: '';
   width: 4px;
   height: 24px;
-  background: linear-gradient(135deg, #006a94, #004a6c);
+  background: var(--accent-gradient);
   border-radius: 2px;
 }
 
@@ -309,12 +309,12 @@ export default {
   font-size: 0.95rem;
   line-height: 1.5;
   text-align: center;
-  color: #2c3e50;
+  color: var(--text-primary);
   font-weight: 500;
 }
 
 .contact-card {
-  background: linear-gradient(135deg, #f0f7fa 0%, #e8f4f8 100%);
+  background: var(--bg-contact);
   border-radius: 12px;
   padding: 24px;
   margin-bottom: 24px;
@@ -323,7 +323,7 @@ export default {
 .contact-info {
   line-height: 2;
   font-size: 1rem;
-  color: #2c3e50;
+  color: var(--text-primary);
 }
 
 .contact-info p {
