@@ -821,11 +821,13 @@ h2 {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  animation: fadeInFallback 1.2s ease-out 0.8s forwards;
 }
 
 .scroll-animate.scroll-animate-visible {
   opacity: 1;
   transform: translateY(0);
+  animation: none;
 }
 
 /* 从左滑入 */
@@ -833,11 +835,13 @@ h2 {
   opacity: 0;
   transform: translateX(-50px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  animation: fadeInLeftFallback 1.2s ease-out 0.8s forwards;
 }
 
 .scroll-animate-left.scroll-animate-visible {
   opacity: 1;
   transform: translateX(0);
+  animation: none;
 }
 
 /* 从右滑入 */
@@ -845,11 +849,13 @@ h2 {
   opacity: 0;
   transform: translateX(50px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  animation: fadeInRightFallback 1.2s ease-out 0.8s forwards;
 }
 
 .scroll-animate-right.scroll-animate-visible {
   opacity: 1;
   transform: translateX(0);
+  animation: none;
 }
 
 /* 缩放出现 */
@@ -857,11 +863,42 @@ h2 {
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  animation: scaleInFallback 1.2s ease-out 0.8s forwards;
 }
 
 .scroll-animate-scale.scroll-animate-visible {
   opacity: 1;
   transform: scale(1);
+  animation: none;
+}
+
+/* Fallback animations - ensure content is visible even if JS fails */
+@keyframes fadeInFallback {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeftFallback {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRightFallback {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleInFallback {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* 延迟动画 */
