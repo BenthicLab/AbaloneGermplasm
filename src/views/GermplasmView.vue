@@ -72,20 +72,20 @@ export default {
           this.tableData = res.data.results;
         }
       } catch (e) {
-        ElMessage.error('Failed to load data');
+        ElMessage.error(this.$t('germplasm.loadFailed'));
       } finally {
         this.loading = false;
       }
     },
     openAdd() {
-      this.dialogTitle = 'Add Germplasm Record';
+      this.dialogTitle = this.$t('germplasm.addRecord');
       this.isEditing = false;
       this.editingId = null;
       this.form = { ...emptyForm };
       this.dialogVisible = true;
     },
     openEdit(row) {
-      this.dialogTitle = 'Edit Germplasm Record';
+      this.dialogTitle = this.$t('germplasm.editRecord');
       this.isEditing = true;
       this.editingId = row.id;
       this.form = {
@@ -104,35 +104,35 @@ export default {
       try {
         if (this.isEditing) {
           await axios.put(`${API_BASE}/${this.editingId}`, this.form);
-          ElMessage.success('Record updated');
+          ElMessage.success(this.$t('germplasm.recordUpdated'));
         } else {
           await axios.post(API_BASE, this.form);
-          ElMessage.success('Record created');
+          ElMessage.success(this.$t('germplasm.recordCreated'));
         }
         this.dialogVisible = false;
         await this.fetchData();
       } catch (e) {
-        ElMessage.error('Operation failed');
+        ElMessage.error(this.$t('germplasm.operationFailed'));
       }
     },
     deleteRecord(row) {
       ElMessageBox.confirm(
-        `Delete "${row.species}"?`,
-        'Confirm Deletion',
+        `${this.$t('germplasm.deleteConfirmMsg', { species: row.species })}`,
+        this.$t('germplasm.confirmDelete'),
         {
           type: 'warning',
-          confirmButtonText: 'Delete',
-          cancelButtonText: 'Cancel',
+          confirmButtonText: this.$t('germplasm.deleteBtn'),
+          cancelButtonText: this.$t('germplasm.cancel'),
           confirmButtonClass: 'el-button--danger',
         }
       )
         .then(async () => {
           try {
             await axios.delete(`${API_BASE}/${row.id}`);
-            ElMessage.success('Record deleted');
+            ElMessage.success(this.$t('germplasm.recordDeleted'));
             await this.fetchData();
           } catch (e) {
-            ElMessage.error('Delete failed');
+            ElMessage.error(this.$t('germplasm.deleteFailed'));
           }
         })
         .catch(() => {});
@@ -157,9 +157,9 @@ export default {
       </el-header>
       <el-main>
         <div class="page-header">
-          <h1 class="page-title">Germplasm Database</h1>
+          <h1 class="page-title">{{ $t('germplasm.title') }}</h1>
           <el-button type="primary" size="large" @click="openAdd" class="add-btn">
-            <el-icon><Plus /></el-icon>&nbsp;Add Record
+            <el-icon><Plus /></el-icon>&nbsp;{{ $t('germplasm.addRecord') }}
           </el-button>
         </div>
 
@@ -172,17 +172,17 @@ export default {
             style="width: 100%"
           >
             <el-table-column type="index" width="55" label="#" />
-            <el-table-column fixed prop="species" label="Species / Hybrids" min-width="220" show-overflow-tooltip />
-            <el-table-column prop="pop" label="Population" min-width="120" />
-            <el-table-column prop="strain" label="Strain" min-width="160" show-overflow-tooltip />
-            <el-table-column prop="total" label="Total" width="100" sortable />
-            <el-table-column prop="year1_percent" label="Year 1 %" width="115" />
-            <el-table-column prop="year2_percent" label="Year 2 %" width="115" />
-            <el-table-column prop="year2_length" label="Year 2 Length (mm)" width="170" />
-            <el-table-column prop="year2_weight" label="Year 2 Weight (g)" width="170" />
-            <el-table-column fixed="right" label="Operations" min-width="240">
+            <el-table-column fixed prop="species" :label="$t('germplasm.species')" min-width="220" show-overflow-tooltip />
+            <el-table-column prop="pop" :label="$t('germplasm.population')" min-width="120" />
+            <el-table-column prop="strain" :label="$t('germplasm.strain')" min-width="160" show-overflow-tooltip />
+            <el-table-column prop="total" :label="$t('germplasm.total')" width="100" sortable />
+            <el-table-column prop="year1_percent" :label="$t('germplasm.year1Percent')" width="115" />
+            <el-table-column prop="year2_percent" :label="$t('germplasm.year2Percent')" width="115" />
+            <el-table-column prop="year2_length" :label="$t('germplasm.year2Length')" width="170" />
+            <el-table-column prop="year2_weight" :label="$t('germplasm.year2Weight')" width="170" />
+            <el-table-column fixed="right" :label="$t('germplasm.operations')" min-width="240">
               <template #header>
-                <el-input v-model="search" size="small" placeholder="Search..." clearable>
+                <el-input v-model="search" size="small" :placeholder="$t('germplasm.search')" clearable>
                   <template #prefix>
                     <el-icon><Search /></el-icon>
                   </template>
@@ -190,10 +190,10 @@ export default {
               </template>
               <template #default="{ row }">
                 <el-button size="small" class="action-btn edit-btn" @click="openEdit(row)">
-                  <el-icon><Edit /></el-icon>&nbsp;Edit
+                  <el-icon><Edit /></el-icon>&nbsp;{{ $t('germplasm.edit') }}
                 </el-button>
                 <el-button size="small" class="action-btn delete-btn" @click="deleteRecord(row)">
-                  <el-icon><Delete /></el-icon>&nbsp;Delete
+                  <el-icon><Delete /></el-icon>&nbsp;{{ $t('germplasm.delete') }}
                 </el-button>
               </template>
             </el-table-column>
@@ -222,36 +222,36 @@ export default {
         label-position="right"
         class="germplasm-form"
       >
-        <el-form-item label="Species / Hybrids" prop="species">
-          <el-input v-model="form.species" placeholder="e.g. 皱纹盘鲍 Haliotis discus hannai" />
+        <el-form-item :label="$t('germplasm.species')" prop="species">
+          <el-input v-model="form.species" :placeholder="$t('germplasm.speciesPlaceholder')" />
         </el-form-item>
-        <el-form-item label="Population">
-          <el-input v-model="form.pop" placeholder="e.g. 大连群体" />
+        <el-form-item :label="$t('germplasm.population')">
+          <el-input v-model="form.pop" :placeholder="$t('germplasm.popPlaceholder')" />
         </el-form-item>
-        <el-form-item label="Strain">
-          <el-input v-model="form.strain" placeholder="e.g. 高糖原品系" />
+        <el-form-item :label="$t('germplasm.strain')">
+          <el-input v-model="form.strain" :placeholder="$t('germplasm.strainPlaceholder')" />
         </el-form-item>
-        <el-form-item label="Total">
-          <el-input v-model="form.total" placeholder="e.g. 22000" />
+        <el-form-item :label="$t('germplasm.total')">
+          <el-input v-model="form.total" :placeholder="$t('germplasm.totalPlaceholder')" />
         </el-form-item>
-        <el-form-item label="Year 1 Percent">
-          <el-input v-model="form.year1_percent" placeholder="e.g. 80%" />
+        <el-form-item :label="$t('germplasm.year1Percent')">
+          <el-input v-model="form.year1_percent" :placeholder="$t('germplasm.year1Placeholder')" />
         </el-form-item>
-        <el-form-item label="Year 2 Percent">
-          <el-input v-model="form.year2_percent" placeholder="e.g. 20%" />
+        <el-form-item :label="$t('germplasm.year2Percent')">
+          <el-input v-model="form.year2_percent" :placeholder="$t('germplasm.year2Placeholder')" />
         </el-form-item>
-        <el-form-item label="Year 2 Length (mm)">
-          <el-input v-model="form.year2_length" placeholder="e.g. 62.47±5.84" />
+        <el-form-item :label="$t('germplasm.year2Length')">
+          <el-input v-model="form.year2_length" :placeholder="$t('germplasm.year2LengthPlaceholder')" />
         </el-form-item>
-        <el-form-item label="Year 2 Weight (g)">
-          <el-input v-model="form.year2_weight" placeholder="e.g. 34.41±13.41" />
+        <el-form-item :label="$t('germplasm.year2Weight')">
+          <el-input v-model="form.year2_weight" :placeholder="$t('germplasm.year2WeightPlaceholder')" />
         </el-form-item>
       </el-form>
       <template #footer>
         <div class="dialog-footer">
-          <el-button class="dialog-cancel-btn" @click="dialogVisible = false">Cancel</el-button>
-          <el-button type="primary" class="dialog-save-btn" @click="submitForm">
-            {{ isEditing ? 'Save Changes' : 'Add Record' }}
+          <el-button class="dialog-cancel-btn" @click="dialogVisible = false">{{ $t('germplasm.cancel') }}</el-button>
+          <el-button type="primary" class="dialog-submit-btn" @click="submitForm">
+            {{ isEditing ? $t('germplasm.save') : $t('germplasm.addRecord') }}
           </el-button>
         </div>
       </template>

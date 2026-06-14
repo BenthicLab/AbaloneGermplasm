@@ -219,10 +219,10 @@ export default {
         <img src="/favicon.ico" style="width: 80px; aspect-ratio: true" />
       </div>
       <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
-        <el-tab-pane label="Login" name="first">
+        <el-tab-pane :label="$t('login.login')" name="first">
           <el-form ref="loginFormRef" :model="loginForm" status-icon :rules="loginFormRules" label-width="80px">
-            <el-form-item label="Username" prop="email">
-              <el-input v-model="loginForm.email" type="text" placeholder="example@xxx.edu.cn" autocomplete="off"
+            <el-form-item :label="$t('login.username')" prop="email">
+              <el-input v-model="loginForm.email" type="text" :placeholder="$t('login.emailPlaceholder')" autocomplete="off"
                 clearable>
                 <template #suffix>
                   <el-icon>
@@ -232,8 +232,8 @@ export default {
               </el-input>
             </el-form-item>
             <br />
-            <el-form-item label="Password" prop="password">
-              <el-input v-model="loginForm.password" type="password" placeholder="Password" autocomplete="off"
+            <el-form-item :label="$t('login.password')" prop="password">
+              <el-input v-model="loginForm.password" type="password" :placeholder="$t('login.password')" autocomplete="off"
                 clearable>
                 <template #suffix>
                   <el-icon>
@@ -244,27 +244,26 @@ export default {
             </el-form-item>
             <div style="text-align: right; margin-top: 30px">
               <el-button type="primary" @click="login" style="color: #000000">
-                User Login
+                {{ $t('login.loginBtn') }}
               </el-button>
               <el-button type="warning" @click="resetLoginForm" style="text-algin: right; color: #000000">
-                Form Reset
+                {{ $t('login.resetBtn') }}
               </el-button>
             </div>
             <el-divider style="margin-top: 50px"></el-divider>
             <el-alert type="danger" :closable="false">
               <el-icon>
                 <BellFilled />
-              </el-icon> Please register if you don't
-              have an account yet!
+              </el-icon> {{ $t('login.noAccount') }}
             </el-alert>
             <h5>Copyright: Xiamen University</h5>
           </el-form>
         </el-tab-pane>
 
-        <el-tab-pane label="Signup" name="second">
+        <el-tab-pane :label="$t('login.signup')" name="second">
           <el-form ref="signupFormRef" :model="signupForm" status-icon :rules="signupFormRules" label-width="80px">
-            <el-form-item label="Email" prop="email">
-              <el-input v-model="signupForm.email" type="email" placeholder="example@xxx.edu.cn" autocomplete="off"
+            <el-form-item :label="$t('login.email')" prop="email">
+              <el-input v-model="signupForm.email" type="email" :placeholder="$t('login.emailPlaceholder')" autocomplete="off"
                 clearable>
                 <template #suffix>
                   <el-icon>
@@ -273,8 +272,8 @@ export default {
                 </template>
               </el-input>
             </el-form-item>
-            <el-form-item label="Password" prop="password">
-              <el-input v-model="signupForm.password" type="password" placeholder="Password" autocomplete="off"
+            <el-form-item :label="$t('login.password')" prop="password">
+              <el-input v-model="signupForm.password" type="password" :placeholder="$t('login.password')" autocomplete="off"
                 clearable>
                 <template #suffix>
                   <el-icon>
@@ -283,8 +282,8 @@ export default {
                 </template>
               </el-input>
             </el-form-item>
-            <el-form-item label="Confirm" prop="confirm">
-              <el-input v-model="signupForm.confirm" type="password" placeholder="Confirm" autocomplete="off" clearable>
+            <el-form-item :label="$t('login.confirm')" prop="confirm">
+              <el-input v-model="signupForm.confirm" type="password" :placeholder="$t('login.confirm')" autocomplete="off" clearable>
                 <template #suffix>
                   <el-icon>
                     <Hide />
@@ -294,18 +293,17 @@ export default {
             </el-form-item>
             <div style="text-align: right">
               <el-button type="primary" @click="signup" style="color: #000000">
-                User Signup
+                {{ $t('login.signupBtn') }}
               </el-button>
               <el-button type="warning" @click="resetSignupForm" style="text-algin: right; color: #000000">
-                Form Reset
+                {{ $t('login.resetBtn') }}
               </el-button>
             </div>
             <el-divider style="margin-top: 50px"></el-divider>
             <el-alert type="danger" :closable="false">
               <el-icon>
                 <BellFilled />
-              </el-icon> Please register if you don't
-              have an account yet!
+              </el-icon> {{ $t('login.hasAccount') }}
             </el-alert>
             <h5>Copyright: Xiamen University</h5>
           </el-form>

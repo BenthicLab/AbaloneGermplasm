@@ -47,12 +47,12 @@ export default {
         { image: new URL('../assets/image/Haliotis_diversicolor.jpg', import.meta.url).href, caption: 'Haliotis diversicolor 杂色鲍' },
       ],
       stats: [
-        { number: '10', label: 'Species & Hybrids<br>鲍物种及杂交种', icon: 'Collection' },
-        { number: '385,700', label: 'Total individuals<br>所有基地总鲍数量', icon: 'DataAnalysis' },
-        { number: '208,800', label: '<i>H. discus hannai</i><br>皱纹盘鲍数量', icon: 'Star' },
-        { number: '7+2', label: 'Geographical populations<br>地理群体', icon: 'Location' },
-        { number: '3+ (57K)', label: 'New Hybrids<br>新杂交种及数量', icon: 'Share' },
-        { number: '7 (221)', label: 'Breeding lines<br>选育品系', icon: 'Document' },
+        { number: '10', label: 'home.section1.stat1', icon: 'Collection' },
+        { number: '385,700', label: 'home.section1.stat5', icon: 'DataAnalysis' },
+        { number: '208,800', label: 'home.section1.stat1default', icon: 'Star' },
+        { number: '7+2', label: 'home.section1.stat2', icon: 'Location' },
+        { number: '3+ (57K)', label: 'home.section1.stat4', icon: 'Share' },
+        { number: '7 (221)', label: 'home.section1.stat3', icon: 'Document' },
       ],
       papers: [
         { link: 'https://doi.org/10.1016/j.foodchem.2025.143913', image: new URL('../assets/image/paper-01.jpg', import.meta.url).href, title: '应用深度学习算法对不同颜色太平洋鲍足肌中类胡萝卜素含量进行无创估计 (Liu et al., 2025)' },
@@ -65,35 +65,35 @@ export default {
       timelineItems: [
         {
           date: '2025-06-20',
-          title: '完善和美化布局',
+          title: 'home.section4.history1',
           descriptions: [
-            '完成 MySQL 数据库表结构设计与初始化',
-            '新增树形结构数据转换与展示功能',
-            '集成 ECharts，支持首页统计图表展示',
-            '增加用户登录状态检测与跳转逻辑',
-            '增加页面顶部和底部组件，统一站点风格',
+            'home.section4.history1desc1',
+            'home.section4.history1desc2',
+            'home.section4.history1desc3',
+            'home.section4.history1desc4',
+            'home.section4.history1desc5',
           ],
         },
         {
           date: '2025-06-19',
-          title: '集成地图与动态渲染',
+          title: 'home.section4.history2',
           descriptions: [
-            '新增论文与新闻板块，支持图片和外链展示',
-            '集成 OpenLayers 地图，展示鲍养殖基地地理分布',
-            '实现地图坐标点的动态渲染与样式美化',
-            '优化页面自适应，提升移动端浏览体验',
-            '增加数据库更新历史时间线，便于追踪项目进展',
+            'home.section4.history2desc1',
+            'home.section4.history2desc2',
+            'home.section4.history2desc3',
+            'home.section4.history2desc4',
+            'home.section4.history2desc5',
           ],
         },
         {
           date: '2025-06-18',
-          title: '初步完成首页设计与布局',
+          title: 'home.section4.history3',
           descriptions: [
-            '完成鲍种质资源数据库首页设计与布局',
-            '集成 Element Plus 组件库，实现响应式页面布局',
-            '新增首页轮播图，展示主要鲍鱼物种图片',
-            '增加鲍鱼种质资源统计卡片，直观显示各类数据',
-            '完成鲍鱼种质资源概览图的展示功能',
+            'home.section4.history3desc1',
+            'home.section4.history3desc2',
+            'home.section4.history3desc3',
+            'home.section4.history3desc4',
+            'home.section4.history3desc5',
           ],
         },
       ],
@@ -189,20 +189,12 @@ export default {
 
         <!-- Section 1: Intro & Stats -->
         <section class="content-section">
-          <h1>1. Intro & Stats 鲍种质资源介绍与统计</h1>
+          <h1>{{ $t('home.section1.title') }}</h1>
           <el-card class="intro-card" shadow="hover">
-            <p class="intro-text">
-              <b>厦门大学鲍遗传育种团队</b>针对鲍种质资源进行了广泛而深入的研究和积累，旨在通过分析不同地理群体、杂交种及选育品系来探索和利用<b>鲍的遗传多样性</b>。
-            </p>
-            <p class="intro-text">
-              <b>皱纹盘鲍（<i>Haliotis discus hannai</i>）</b>作为主要研究对象共有208,800数量占半，包含韩国群体、日本群体、大连群体、青岛群体、洋下群体、晋江群体、海南群体等7个地理群体，以及<b>高糖原品系、红壳品系、紫壳品系、高食物转化率选育系、足肌拉力选育系、足肌颜色选育系、耐低氧选育系</b>等7个优良性状选育品系。
-            </p>
-            <p class="intro-text">
-              <b>杂交种</b>研究是本课题组的另一大亮点，通过结合不同鲍鱼物种的优势基因，开发出了一系列新品种。例如，<b>绿盘鲍（<i>H. discus hannai</i> ♀ × <i>H. fulgens</i> ♂）和西盘鲍（<i>H. gigantea</i> ♀ × <i>H. discus hannai</i> ♂）</b>等杂交种，总共涉及57,000个个体。
-            </p>
-            <p class="intro-text">
-              西氏鲍（<i>Haliotis gigantea</i>）、杂色鲍（<i>Haliotis diversicolor</i>）、羊鲍（<i>Haliotis ovina</i>）和耳鲍（<i>Haliotis asinina</i>）等其他几种鲍鱼物种，总计47,900个样本。特别是对三倍体的研究，样本数达到34,000个。
-            </p>
+            <p class="intro-text" v-html="$t('home.section1.intro1')"></p>
+            <p class="intro-text" v-html="$t('home.section1.intro2')"></p>
+            <p class="intro-text" v-html="$t('home.section1.intro3')"></p>
+            <p class="intro-text" v-html="$t('home.section1.intro4')"></p>
           </el-card>
 
           <!-- Stats Cards -->
@@ -214,7 +206,7 @@ export default {
                 </div>
                 <div class="stats-number">{{ stat.number }}</div>
                 <div class="stats-divider"></div>
-                <div class="stats-label" v-html="stat.label"></div>
+                <div class="stats-label" v-html="$t(stat.label)"></div>
               </el-card>
             </el-col>
           </el-row>
@@ -222,7 +214,7 @@ export default {
 
         <!-- Section 2: Overview -->
         <section class="content-section">
-          <h1>2. Overview & Tree 鲍种质资源概览图</h1>
+          <h1>{{ $t('home.section2.title') }}</h1>
           <el-card shadow="hover" class="overview-card">
             <img src="../assets/image/Overview.png" alt="Overview" class="overview-image" />
           </el-card>
@@ -230,7 +222,7 @@ export default {
 
         <!-- Section 3: Publications -->
         <section class="content-section">
-          <h1>3. Publications & News 论文发表与新讯</h1>
+          <h1>{{ $t('home.section3.title') }}</h1>
           <el-row :gutter="20" class="papers-row">
             <el-col :lg="8" :md="12" :sm="24" :xs="24" v-for="(paper, index) in papers" :key="index">
               <el-card shadow="hover" class="paper-card">
@@ -245,7 +237,7 @@ export default {
 
         <!-- Section 4: Timeline -->
         <section class="content-section">
-          <h1>4. Updates & History 更新历史</h1>
+          <h1>{{ $t('home.section4.title') }}</h1>
           <el-card shadow="hover" class="timeline-card">
             <el-timeline>
               <el-timeline-item
@@ -257,9 +249,9 @@ export default {
                 size="large"
               >
                 <el-card shadow="hover">
-                  <h3>{{ item.title }}</h3>
+                  <h3>{{ $t(item.title) }}</h3>
                   <ul class="timeline-list">
-                    <li v-for="(desc, i) in item.descriptions" :key="i">{{ desc }}</li>
+                    <li v-for="(descKey, i) in item.descriptions" :key="i">{{ $t(descKey) }}</li>
                   </ul>
                 </el-card>
               </el-timeline-item>
@@ -269,12 +261,12 @@ export default {
 
         <!-- Section 5: Map -->
         <section class="content-section">
-          <h1>5. Abalone bases 鲍养殖基地</h1>
+          <h1>{{ $t('home.section5.title') }}</h1>
           <el-card shadow="hover" class="map-card">
             <template #header>
               <div class="map-header">
                 <el-icon><Location /></el-icon>
-                <span>Bases Location (Coordinates)</span>
+                <span>{{ $t('home.section5.location') }}</span>
               </div>
             </template>
             <div id="about-map" class="map-container"></div>

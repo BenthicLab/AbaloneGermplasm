@@ -1,6 +1,10 @@
 <script>
 import { getCookie, delCookie } from "@/assets/js/cookie.js";
-import { HomeFilled, Grid, OfficeBuilding, UserFilled, ArrowDown, SwitchButton, Plus, Expand, Fold, Document } from '@element-plus/icons-vue';
+import { useDarkMode } from "@/composables/useDarkMode";
+import { useI18n } from "vue-i18n";
+import { HomeFilled, Grid, OfficeBuilding, UserFilled, ArrowDown, SwitchButton, Plus, Expand, Fold, Document, Sunny, Moon } from '@element-plus/icons-vue';
+
+const { isDark, toggle: toggleDark } = useDarkMode();
 
 export default {
   name: 'AppHeader',
@@ -14,7 +18,18 @@ export default {
     Plus,
     Expand,
     Fold,
-    Document
+    Document,
+    Sunny,
+    Moon,
+  },
+  setup() {
+    const { locale, t } = useI18n();
+    const switchLang = () => {
+      const next = locale.value === 'zh-CN' ? 'en-US' : 'zh-CN';
+      locale.value = next;
+      localStorage.setItem('lang', next);
+    };
+    return { isDark, toggleDark, switchLang, locale, t };
   },
   data() {
     return {
@@ -83,30 +98,41 @@ export default {
     >
       <el-menu-item index="/">
         <el-icon><HomeFilled /></el-icon>
-        <span class="menu-label">Home</span>
+        <span class="menu-label">{{ $t('nav.home') }}</span>
       </el-menu-item>
 
       <el-menu-item index="/germplasm">
         <el-icon><Grid /></el-icon>
-        <span class="menu-label">Germplasm</span>
+        <span class="menu-label">{{ $t('nav.germplasm') }}</span>
       </el-menu-item>
 
       <el-menu-item index="/policy">
         <el-icon><Document /></el-icon>
-        <span class="menu-label">Policy</span>
+        <span class="menu-label">{{ $t('nav.policy') }}</span>
       </el-menu-item>
 
       <el-menu-item index="/about">
         <el-icon><OfficeBuilding /></el-icon>
-        <span class="menu-label">About</span>
+        <span class="menu-label">{{ $t('nav.about') }}</span>
       </el-menu-item>
     </el-menu>
 
-    <div class="user-section">
+    <div class="toolbar-section">
+      <!-- Dark mode toggle -->
+      <button class="header-btn icon-btn" @click="toggleDark" :title="isDark ? 'Light Mode' : 'Dark Mode'">
+        <el-icon :size="16"><Sunny v-if="isDark" /><Moon v-else /></el-icon>
+      </button>
+
+      <!-- Language switch -->
+      <button class="header-btn lang-btn" @click="switchLang">
+        {{ locale === 'zh-CN' ? 'EN' : '中' }}
+      </button>
+
+      <!-- User section -->
       <template v-if="!isLoggedIn">
         <button class="header-btn login-btn" @click="$router.push('/login')">
           <el-icon><UserFilled /></el-icon>
-          <span class="btn-label">Login</span>
+          <span class="btn-label">{{ $t('nav.login') }}</span>
         </button>
       </template>
       <template v-else>
@@ -158,7 +184,7 @@ export default {
             @click="navigateTo('/')"
           >
             <el-icon><HomeFilled /></el-icon>
-            <span>Home</span>
+            <span>{{ $t('nav.home') }}</span>
           </button>
           <button
             class="mobile-menu-item"
@@ -166,7 +192,7 @@ export default {
             @click="navigateTo('/germplasm')"
           >
             <el-icon><Grid /></el-icon>
-            <span>Germplasm</span>
+            <span>{{ $t('nav.germplasm') }}</span>
           </button>
           <button
             class="mobile-menu-item"
@@ -174,7 +200,7 @@ export default {
             @click="navigateTo('/policy')"
           >
             <el-icon><Document /></el-icon>
-            <span>Policy</span>
+            <span>{{ $t('nav.policy') }}</span>
           </button>
           <button
             class="mobile-menu-item"
@@ -182,7 +208,20 @@ export default {
             @click="navigateTo('/about')"
           >
             <el-icon><OfficeBuilding /></el-icon>
-            <span>About</span>
+            <span>{{ $t('nav.about') }}</span>
+          </button>
+          <div class="mobile-menu-divider"></div>
+          <button
+            class="mobile-menu-item"
+            @click="switchLang"
+          >
+            <span>{{ locale === 'zh-CN' ? 'Switch to English' : '切换到中文' }}</span>
+          </button>
+          <button
+            class="mobile-menu-item"
+            @click="toggleDark"
+          >
+            <span>{{ isDark ? 'Light Mode' : 'Dark Mode' }}</span>
           </button>
           <div class="mobile-menu-divider"></div>
           <button
@@ -191,7 +230,7 @@ export default {
             @click="navigateTo('/login')"
           >
             <el-icon><UserFilled /></el-icon>
-            <span>Login</span>
+            <span>{{ $t('nav.login') }}</span>
           </button>
           <template v-else>
             <button
@@ -206,7 +245,7 @@ export default {
               @click="handleLogout"
             >
               <el-icon><SwitchButton /></el-icon>
-              <span>Logout</span>
+              <span>{{ $t('nav.logout') }}</span>
             </button>
           </template>
         </div>
@@ -332,10 +371,11 @@ export default {
   margin-right: 5px;
 }
 
-/* ==================== User Section ==================== */
-.user-section {
+/* ==================== Toolbar Section ==================== */
+.toolbar-section {
   display: flex;
   align-items: center;
+  gap: 8px;
   margin-left: auto;
   flex-shrink: 0;
   animation: fadeIn 0.4s 0.25s cubic-bezier(0.25, 0.8, 0.25, 1) both;
@@ -368,6 +408,23 @@ export default {
   background: rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.icon-btn {
+  padding: 0 10px;
+  min-width: 36px;
+  justify-content: center;
+}
+
+.lang-btn {
+  padding: 0 12px;
+  min-width: 40px;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 /* User dropdown trigger */
@@ -405,9 +462,6 @@ export default {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-/* ==================== Dropdown Menu ==================== */
-/* NOTE: dropdown is teleported to body, styles handled in non-scoped block below */
 
 /* ==================== Responsive ==================== */
 
@@ -568,6 +622,9 @@ export default {
     padding: 0 14px;
     font-size: 0.84rem;
   }
+  .toolbar-section {
+    gap: 5px;
+  }
 }
 
 /* ---- 768px ~ 991px: compact ---- */
@@ -606,11 +663,23 @@ export default {
     font-size: 0.8rem;
     border-radius: 6px;
   }
+  .icon-btn {
+    padding: 0 8px;
+    min-width: 32px;
+  }
+  .lang-btn {
+    padding: 0 8px;
+    min-width: 32px;
+    font-size: 0.75rem;
+  }
   .user-display-name {
     max-width: 60px;
   }
   .header-menu {
     height: 54px;
+  }
+  .toolbar-section {
+    gap: 4px;
   }
 }
 
@@ -644,9 +713,10 @@ export default {
     justify-content: center;
   }
 
-  /* Compact user section */
-  .user-section {
+  /* Compact toolbar */
+  .toolbar-section {
     margin-left: 0;
+    gap: 4px;
   }
   .header-btn,
   .user-trigger {
@@ -654,6 +724,15 @@ export default {
     padding: 0 10px;
     font-size: 0.78rem;
     border-radius: 6px;
+  }
+  .icon-btn {
+    padding: 0 6px;
+    min-width: 30px;
+  }
+  .lang-btn {
+    padding: 0 6px;
+    min-width: 30px;
+    font-size: 0.7rem;
   }
   .user-display-name {
     max-width: 50px;
@@ -663,7 +742,7 @@ export default {
   .btn-label {
     display: none;
   }
-  .header-btn {
+  .login-btn {
     padding: 0 8px;
   }
 }
@@ -689,6 +768,15 @@ export default {
     height: 28px;
     padding: 0 6px;
     font-size: 0.75rem;
+  }
+  .icon-btn {
+    padding: 0 4px;
+    min-width: 28px;
+  }
+  .lang-btn {
+    padding: 0 4px;
+    min-width: 28px;
+    font-size: 0.65rem;
   }
   .user-trigger .el-icon--right {
     display: none;

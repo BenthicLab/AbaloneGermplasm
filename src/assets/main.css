@@ -128,6 +128,244 @@ html, body {
   scrollbar-color: #c0c8d0 transparent;
 }
 
+/* ===== Dark Mode Styles ===== */
+html.dark {
+  background: #1a1a2e;
+  color: #e0e0e0;
+}
+
+html.dark body {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%);
+  color: #e0e0e0;
+}
+
+html.dark a {
+  color: #64b5f6;
+}
+
+html.dark a:hover {
+  color: #90caf9;
+}
+
+/* Element Plus dark mode overrides */
+html.dark .el-card {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #e0e0e0;
+}
+
+html.dark .el-card.is-always-shadow,
+html.dark .el-card.is-hover-shadow:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+html.dark .el-table {
+  background-color: #1e293b;
+  color: #e0e0e0;
+}
+
+html.dark .el-table th.el-table__cell {
+  background-color: #16213e;
+  color: #e0e0e0;
+}
+
+html.dark .el-table tr {
+  background-color: #1e293b;
+}
+
+html.dark .el-table td.el-table__cell {
+  border-bottom-color: #334155;
+}
+
+html.dark .el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
+  background-color: #243447;
+}
+
+html.dark .el-table--enable-row-hover .el-table__body tr:hover > td.el-table__cell {
+  background-color: #2a3f5f;
+}
+
+html.dark .el-input__wrapper {
+  background-color: #1e293b;
+  box-shadow: 0 0 0 1px #334155 inset;
+}
+
+html.dark .el-input__inner {
+  color: #e0e0e0;
+}
+
+html.dark .el-input__wrapper:hover {
+  box-shadow: 0 0 0 1px #475569 inset;
+}
+
+html.dark .el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 1px #409eff inset;
+}
+
+html.dark .el-button--default {
+  --el-button-bg-color: #1e293b;
+  --el-button-border-color: #334155;
+  --el-button-text-color: #e0e0e0;
+}
+
+html.dark .el-button--default:hover {
+  --el-button-bg-color: #334155;
+  --el-button-border-color: #475569;
+}
+
+html.dark .el-dialog {
+  background-color: #1e293b;
+  --el-dialog-title-font-size: 18px;
+}
+
+html.dark .el-dialog__title {
+  color: #e0e0e0;
+}
+
+html.dark .el-header {
+  background-color: #0f172a;
+  border-bottom-color: #334155;
+}
+
+html.dark .el-footer {
+  background-color: #0f172a;
+}
+
+html.dark .el-menu {
+  background-color: #0f172a;
+  border-right-color: #334155;
+}
+
+html.dark .el-menu-item {
+  color: #cbd5e1;
+}
+
+html.dark .el-menu-item:hover {
+  background-color: #1e293b;
+}
+
+html.dark .el-menu-item.is-active {
+  color: #409eff;
+}
+
+html.dark .el-tabs__item {
+  color: #94a3b8;
+}
+
+html.dark .el-tabs__item.is-active {
+  color: #409eff;
+}
+
+html.dark .el-divider__text {
+  background-color: #1e293b;
+  color: #e0e0e0;
+}
+
+html.dark .el-tag {
+  background-color: #334155;
+  border-color: #475569;
+  color: #cbd5e1;
+}
+
+html.dark .el-pagination .btn-prev,
+html.dark .el-pagination .btn-next {
+  background-color: #1e293b;
+  color: #e0e0e0;
+}
+
+html.dark .el-pagination .el-pager li {
+  background-color: #1e293b;
+  color: #e0e0e0;
+}
+
+html.dark .el-pagination .el-pager li.is-active {
+  background-color: #409eff;
+  color: #fff;
+}
+
+html.dark .el-form-item__label {
+  color: #cbd5e1;
+}
+
+html.dark .el-popper.is-dark {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+}
+
+/* Policy page dark mode */
+html.dark .policy-hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1a2744 40%, #0f172a 100%);
+}
+
+html.dark .policy-card {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+html.dark .policy-card:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+html.dark .species-card {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+html.dark .priority-card {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+html.dark .policy-cta {
+  background: linear-gradient(135deg, #1e293b, #243447);
+}
+
+html.dark .divider-title {
+  color: #e0e0e0;
+}
+
+/* About page dark mode */
+html.dark .about-hero {
+  background: #1e293b;
+}
+
+/* Login page dark mode */
+html.dark .loginBG {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%);
+}
+
+html.dark .loginBG .el-card {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+/* Home page dark mode */
+html.dark .stat-card {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+html.dark .stat-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+html.dark .timeline-card {
+  background-color: #1e293b;
+}
+
+/* Scrollbar dark mode */
+html.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+html.dark * {
+  scrollbar-color: #475569 transparent;
+}
+
 /* ===== Element Plus Layout ===== */
 .el-header {
   padding: 0;

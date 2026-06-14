@@ -1,0 +1,254 @@
+{
+  "nav": {
+    "home": "Home",
+    "germplasm": "Germplasm DB",
+    "about": "About",
+    "policy": "Policy",
+    "login": "Login",
+    "logout": "Logout",
+    "hi": "Hi"
+  },
+  "footer": {
+    "copyright": "© 2025 BenthicLab. All rights reserved.",
+    "institution": "College of Ocean and Earth Sciences, Xiamen University",
+    "lab": "State Key Laboratory of Marine Aquaculture Breeding",
+    "contact": "Contact: miaobenben@stu.xmu.edu.cn"
+  },
+  "home": {
+    "carousel": {
+      "slide1": "Benthic Germplasm Database",
+      "slide2": "Abalone Genetics & Germplasm Conservation",
+      "slide3": "Multi-Omics Data Integration & Analysis"
+    },
+    "section1": {
+      "title": "1. Intro & Stats",
+      "intro1": "The <b>Xiamen University Abalone Genetics and Breeding Team</b> has conducted extensive research on abalone germplasm resources, aiming to explore and utilize <b>abalone genetic diversity</b> by analyzing different geographic populations, hybrids, and selected strains.",
+      "intro2": "<b>Pacific abalone (<i>Haliotis discus hannai</i>)</b> is the primary research species with 208,800 individuals, accounting for half of the total. It includes 7 geographic populations: Korean, Japanese, Dalian, Qingdao, Yangxia, Jinjiang, and Hainan, as well as 7 selected strains: <b>high-glycogen, red-shell, purple-shell, high feed conversion, foot muscle pull, foot muscle color, and hypoxia-tolerant</b>.",
+      "intro3": "<b>Hybrid</b> research is another highlight of our team. By combining advantageous genes from different abalone species, we have developed a series of new varieties. For example, <b>green-disk abalone (<i>H. discus hannai</i> ♀ × <i>H. fulgens</i> ♂) and xi-disk abalone (<i>H. gigantea</i> ♀ × <i>H. discus hannai</i> ♂)</b> and other hybrids involve a total of 57,000 individuals.",
+      "intro4": "Other abalone species including <i>Haliotis gigantea</i>, <i>Haliotis diversicolor</i>, <i>Haliotis ovina</i>, and <i>Haliotis asinina</i> total 47,900 samples. Research on triploids has reached 34,000 samples.",
+      "stat1": "Species",
+      "stat1default": "<i>H. discus hannai</i><br>Pacific abalone",
+      "stat2": "Populations",
+      "stat3": "Strains",
+      "stat4": "Hybrids",
+      "stat5": "Total Samples",
+      "stat6": "Triploid Samples"
+    },
+    "section2": {
+      "title": "2. Overview & Tree"
+    },
+    "section3": {
+      "title": "3. Publications & News"
+    },
+    "section4": {
+      "title": "4. Updates & History",
+      "history1": "Refine and beautify layout",
+      "history1desc1": "Completed MySQL database table structure design and initialization",
+      "history1desc2": "Added tree structure data conversion and display functionality",
+      "history1desc3": "Integrated ECharts for homepage statistical chart display",
+      "history1desc4": "Added user login status detection and redirect logic",
+      "history1desc5": "Added page header and footer components for unified site style",
+      "history2": "Integrate map and dynamic rendering",
+      "history2desc1": "Added Papers & News section with image and external link support",
+      "history2desc2": "Integrated OpenLayers map to display abalone farm geographic distribution",
+      "history2desc3": "Implemented dynamic rendering and style beautification of map coordinates",
+      "history2desc4": "Optimized page responsiveness for improved mobile browsing experience",
+      "history2desc5": "Added database update history timeline for project progress tracking",
+      "history3": "Initial homepage design and layout",
+      "history3desc1": "Completed homepage design and layout of abalone germplasm database",
+      "history3desc2": "Integrated Element Plus component library for responsive page layout",
+      "history3desc3": "Added homepage carousel showcasing major abalone species images",
+      "history3desc4": "Added abalone germplasm statistics cards for intuitive data display",
+      "history3desc5": "Completed abalone germplasm overview diagram display functionality"
+    },
+    "section5": {
+      "title": "5. Abalone Bases",
+      "location": "Bases Location (Coordinates)"
+    }
+  },
+  "about": {
+    "section1": {
+      "title": "1. BenthicLab",
+      "intro1": "The <b>Xiamen University Abalone Genetics and Breeding Team</b> has conducted extensive research on abalone germplasm resources, aiming to explore and utilize <b>abalone genetic diversity</b> by analyzing different geographic populations, hybrids, and selected strains.",
+      "intro2": "<b>Pacific abalone (<i>Haliotis discus hannai</i>)</b> is the primary research species with 208,800 individuals, accounting for half of the total. It includes 7 geographic populations: Korean, Japanese, Dalian, Qingdao, Yangxia, Jinjiang, and Hainan, as well as 7 selected strains: <b>high-glycogen, red-shell, purple-shell, high feed conversion, foot muscle pull, foot muscle color, and hypoxia-tolerant</b>. These breeding efforts not only improve the success rate and economic benefits of abalone farming but also lay the foundation for subsequent genetic research.",
+      "intro3": "<b>Hybrid</b> research is another highlight of our team. By combining advantageous genes from different abalone species, we have developed a series of new varieties. For example, <b>green-disk abalone (<i>H. discus hannai</i> ♀ × <i>H. fulgens</i> ♂) and xi-disk abalone (<i>H. gigantea</i> ♀ × <i>H. discus hannai</i> ♂)</b> and other hybrids involve a total of 57,000 individuals. These hybrids demonstrate superior growth performance and environmental adaptability, bringing new hope to the abalone aquaculture industry.",
+      "intro4": "Other abalone species including <i>Haliotis gigantea</i>, <i>Haliotis diversicolor</i>, <i>Haliotis ovina</i>, and <i>Haliotis asinina</i> total 47,900 samples. Research on triploids has reached 34,000 samples."
+    },
+    "section2": {
+      "title": "2. Database Personnel",
+      "ke": "Ke Caihuan: Distinguished Professor, College of Ocean and Earth Sciences, Xiamen University, State Key Laboratory of Marine Aquaculture Breeding, Xiamen, Fujian, China (Project Lead)",
+      "you": "You Weiwei: Professor, College of Ocean and Earth Sciences, Xiamen University, State Key Laboratory of Marine Aquaculture Breeding, Xiamen, Fujian, China (Project Lead)",
+      "luo": "Luo Xuan: Engineer, College of Ocean and Earth Sciences, Xiamen University, State Key Laboratory of Marine Aquaculture Breeding, Xiamen, Fujian, China (Project Lead)",
+      "gan": "Gan Yang: Ph.D., College of Ocean and Earth Sciences, Xiamen University, State Key Laboratory of Marine Aquaculture Breeding, Xiamen, Fujian, China (Project Lead)",
+      "miao": "Miao Benben: Ph.D., College of Ocean and Earth Sciences, Xiamen University, State Key Laboratory of Marine Aquaculture Breeding, Xiamen, Fujian, China (Frontend Framework & Database Design & Development)"
+    },
+    "section3": {
+      "title": "3. Software Copyrights",
+      "software1": "Database software for storing and analyzing abalone phenotype and genotype data based on Flask-Vue (BenthicLab)",
+      "software2": "Desktop software for biological multi-omics data analysis and visualization based on Java and R (BenthicLab)",
+      "software3": "WGCNA weighted gene co-expression network analysis platform based on R-Shiny (BenthicLab)",
+      "software4": "Online platform for analyzing and constructing biomolecular regulatory networks in biology (BenthicLab)",
+      "software5": "Online analysis platform for structural equation model construction and evaluation based on R (BenthicLab)",
+      "software6": "Online platform for bioinformatics pairwise sequence multi-algorithm alignment based on R (BenthicLab)"
+    },
+    "section4": {
+      "title": "4. Contact Us",
+      "name": "Name: Miao Benben",
+      "phone": "Phone: +86 13726900929",
+      "email": "Email: miaobenben@stu.xmu.edu.cn",
+      "institution": "Institution: State Key Laboratory of Marine Environmental Science, College of Ocean and Earth Sciences, Xiamen University",
+      "institutionCN": "College of Ocean and Earth Sciences, Xiamen University"
+    }
+  },
+  "germplasm": {
+    "title": "Germplasm Database",
+    "addRecord": "Add Record",
+    "search": "Search...",
+    "edit": "Edit",
+    "delete": "Delete",
+    "addTitle": "Add Germplasm Record",
+    "editRecord": "Edit Record",
+    "save": "Save Changes",
+    "species": "Species / Hybrids",
+    "population": "Population",
+    "strain": "Strain",
+    "total": "Total",
+    "year1Percent": "Year 1 %",
+    "year2Percent": "Year 2 %",
+    "year2Length": "Year 2 Length (mm)",
+    "year2Weight": "Year 2 Weight (g)",
+    "operations": "Operations",
+    "speciesPlaceholder": "e.g. Haliotis discus hannai",
+    "popPlaceholder": "e.g. Dalian population",
+    "strainPlaceholder": "e.g. High-glycogen strain",
+    "totalPlaceholder": "e.g. 22000",
+    "year1Placeholder": "e.g. 80%",
+    "year2Placeholder": "e.g. 20%",
+    "year2LengthPlaceholder": "e.g. 62.47±5.84",
+    "year2WeightPlaceholder": "e.g. 34.41±13.41",
+    "speciesRequired": "Species is required",
+    "loadFailed": "Failed to load data",
+    "recordUpdated": "Record updated",
+    "recordCreated": "Record created",
+    "operationFailed": "Operation failed",
+    "recordDeleted": "Record deleted",
+    "deleteFailed": "Delete failed",
+    "confirmDelete": "Confirm Deletion",
+    "deleteConfirmMsg": "Delete \"{species}\"?",
+    "deleteBtn": "Delete",
+    "cancel": "Cancel"
+  },
+  "policy": {
+    "heroTitle": "Abalone Conservation Policy",
+    "heroSubtitle": "International frameworks, national regulations, and sustainable management strategies for the long-term conservation of abalone genetic resources",
+    "framework": "Policy & Protection Framework",
+    "intro": "Abalone (genus <i>Haliotis</i>) are ecologically and economically important marine gastropods found in temperate and tropical waters worldwide. Due to overfishing, habitat degradation, disease outbreaks, and climate change, many wild abalone populations have experienced significant declines. A multi-layered policy framework — from international conventions to national regulations and local management measures — has been established to ensure the conservation and sustainable use of these valuable genetic resources.",
+    "speciesStatusTitle": "Species Conservation Status",
+    "prioritiesTitle": "Conservation Priorities",
+    "ctaTitle": "Join Conservation Efforts",
+    "ctaDesc": "Through collaborative research, sustainable aquaculture practices, and policy advocacy, we can ensure that abalone genetic resources are preserved for future generations.",
+    "ctaBtn": "Learn More About Our Work",
+    "protections": {
+      "iucn": {
+        "title": "IUCN Red List",
+        "desc": "Many abalone species are listed on the IUCN Red List of Threatened Species. For example, <i>Haliotis cracherodii</i> (Black abalone) is classified as Critically Endangered, while <i>Haliotis kamtschatkana</i> (Pinto abalone) and <i>Haliotis sorenseni</i> (White abalone) are listed as Endangered. These assessments guide conservation priorities and resource allocation globally."
+      },
+      "cites": {
+        "title": "CITES Convention",
+        "desc": "All species of the genus <i>Haliotis</i> are listed in CITES Appendix II (except for certain regional populations). This means international trade in abalone products requires permits and certificates to ensure sustainability. CITES trade monitoring provides critical data on global harvest and trade volumes."
+      },
+      "national": {
+        "title": "National Protection Laws",
+        "desc": "China classifies several abalone species under national and provincial wildlife protection laws. Marine protected areas (MPAs) have been established along the coastlines of Fujian, Guangdong, Shandong, and other provinces. Fishing seasons and minimum size limits are enforced to protect wild populations and spawning stocks."
+      },
+      "sustainable": {
+        "title": "Sustainable Aquaculture",
+        "desc": "With over 95% of global abalone supply now coming from aquaculture, sustainable farming practices are essential. China leads global abalone aquaculture production, contributing to food security while reducing pressure on wild stocks. Integrated multi-trophic aquaculture (IMTA) systems are being developed to minimize environmental impact."
+      }
+    },
+    "species": {
+      "cites": "Appendix II",
+      "discus": {
+        "name": "Pacific Abalone",
+        "iucn": "Endangered",
+        "status": "Major aquaculture species; wild populations in steep decline"
+      },
+      "fulgens": {
+        "name": "Green Abalone",
+        "iucn": "Endangered",
+        "status": "California populations severely depleted; Mexico fishery managed"
+      },
+      "ovina": {
+        "name": "Sheep Abalone",
+        "iucn": "Data Deficient",
+        "status": "Tropical species; low resources in South China Sea islands"
+      },
+      "asinina": {
+        "name": "Donkey's Ear Abalone",
+        "iucn": "Data Deficient",
+        "status": "Tropical aquaculture species; important in Southeast Asia"
+      },
+      "gigantea": {
+        "name": "Giant Abalone",
+        "iucn": "Endangered",
+        "status": "Important for hybridization; wild populations threatened"
+      },
+      "diversicolor": {
+        "name": "Varied Abalone",
+        "iucn": "Critically Endangered",
+        "status": "Listed as CR in Vietnam Red Book 2024; key species in southern China"
+      }
+    },
+    "priorities": {
+      "genetic": {
+        "title": "Genetic Conservation",
+        "desc": "Establish cryopreservation banks for gametes and embryos of all major abalone species and their hybrids to preserve genetic diversity for future restoration and breeding programs."
+      },
+      "monitoring": {
+        "title": "Wild Population Monitoring",
+        "desc": "Implement long-term monitoring programs for wild abalone populations along China's coastline, using environmental DNA (eDNA) and traditional survey methods to track population trends."
+      },
+      "disease": {
+        "title": "Disease Management",
+        "desc": "Develop comprehensive disease surveillance and biosecurity protocols for aquaculture facilities to prevent pathogen spread between farmed and wild abalone populations."
+      },
+      "climate": {
+        "title": "Climate Adaptation",
+        "desc": "Study thermal tolerance and hypoxia resistance across different abalone species and populations to identify strains suitable for future ocean warming and acidification scenarios."
+      },
+      "cooperation": {
+        "title": "International Cooperation",
+        "desc": "Strengthen collaboration with regional partners (Japan, Korea, Australia, South Africa) on abalone conservation, sharing best practices for sustainable management and aquaculture innovation."
+      },
+      "awareness": {
+        "title": "Public Awareness",
+        "desc": "Increase public education and outreach about abalone conservation, sustainable seafood choices, and the ecological importance of abalone in marine ecosystems."
+      }
+    }
+  },
+  "login": {
+    "login": "Sign In",
+    "signup": "Sign Up",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "confirm": "Confirm Password",
+    "loginBtn": "Sign In",
+    "signupBtn": "Sign Up",
+    "resetBtn": "Reset",
+    "emailPlaceholder": "example@xxx.edu.cn",
+    "noAccount": "Please register if you don't have an account yet!",
+    "hasAccount": "Please login if you already have an account!",
+    "emailRequired": "Please input email as username",
+    "passwordRequired": "Please input password, will be converted to hash code",
+    "confirmRequired": "Please input password again for confirmation",
+    "loginSuccess": "Login success, welcome!",
+    "loginFailed": "The username/email or password is incorrect",
+    "emptyFields": "Please input your email and password",
+    "signupSuccess": "Signup success, please login",
+    "emailFormatError": "Please input username with email format containing @",
+    "passwordError": "Please input password > 6 for more security",
+    "confirmError": "The password does not match confirmation",
+    "emailExistError": "The username/email already exists, please login"
+  }
+}

@@ -8,9 +8,9 @@
     </el-col>
     <el-col :span="24" :sm="8" :lg="8">
       <div class="footer-info">
-        <p>Copyright © 2025 BenthicLab</p>
-        <p>All Rights Reserved</p>
-        <p class="footer-desc">鲍种质资源数据库</p>
+        <p>{{ $t('footer.copyright') }}</p>
+        <p>{{ $t('footer.institution') }}</p>
+        <p class="footer-desc">{{ $t('footer.lab') }}</p>
       </div>
     </el-col>
     <el-col :span="24" :sm="8" :lg="8">
