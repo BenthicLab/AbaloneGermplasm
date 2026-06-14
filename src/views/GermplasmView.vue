@@ -5,6 +5,7 @@ import { Edit, Delete, Plus, Search } from '@element-plus/icons-vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { getCookie } from "../assets/js/cookie.js";
 import axios from 'axios';
+import { useScrollAnimation } from '../composables/useScrollAnimation';
 
 const API_BASE = '/api/germplasm';
 
@@ -27,6 +28,9 @@ export default {
     Delete,
     Plus,
     Search,
+  },
+  setup() {
+    useScrollAnimation();
   },
   data() {
     return {

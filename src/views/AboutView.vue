@@ -1,6 +1,7 @@
 <script>
 import AppHeader from "../components/AppHeader.vue";
 import AppFooter from "../components/AppFooter.vue";
+import { useScrollAnimation } from '../composables/useScrollAnimation';
 
 import { getCookie } from "../assets/js/cookie.js";
 
@@ -16,6 +17,9 @@ export default {
   components: {
     AppHeader,
     AppFooter,
+  },
+  setup() {
+    useScrollAnimation();
   },
   data() {
     return {
@@ -99,8 +103,8 @@ export default {
       </el-header>
 
       <el-main style="margin-top: 70px">
-        <h2>{{ $t('about.section1.title') }}</h2>
-        <el-row :gutter="50">
+        <h2 class="scroll-animate">{{ $t('about.section1.title') }}</h2>
+        <el-row :gutter="50" class="scroll-animate">
           <el-col :span="24" :sm="12" :lg="12">
             <el-card style="width: 100%; margin-bottom: 20px" shadow="hover">
               <p v-html="$t('about.section1.intro1')"></p>
@@ -127,8 +131,8 @@ export default {
         </el-row>
 
         <br />
-        <h2>{{ $t('about.section2.title') }}</h2>
-        <el-row :gutter="50">
+        <h2 class="scroll-animate">{{ $t('about.section2.title') }}</h2>
+        <el-row :gutter="50" class="scroll-animate">
           <el-col :span="24" :sm="12" :lg="12">
             <img src="../assets/image/Laboratory.png" style="
                 width: 100%;
@@ -154,8 +158,8 @@ export default {
         </el-row>
 
         <br />
-        <h2>{{ $t('about.section3.title') }}</h2>
-        <el-row :gutter="20">
+        <h2 class="scroll-animate">{{ $t('about.section3.title') }}</h2>
+        <el-row :gutter="20" class="scroll-animate">
           <el-col :lg="8" :md="12" :sm="24" :xs="24" style="margin-bottom: 20px;">
             <el-card shadow="hover" class="paper-card">
               <img src="../assets/image/patent-01.jpg" alt="" style="width: 100%; border-radius: 8px;" />
@@ -195,8 +199,8 @@ export default {
         </el-row>
 
         <br />
-        <h2>{{ $t('about.section4.title') }}</h2>
-        <el-card>
+        <h2 class="scroll-animate">{{ $t('about.section4.title') }}</h2>
+        <el-card class="scroll-animate">
           <div style="
               line-height: 2em;
               overflow: auto;

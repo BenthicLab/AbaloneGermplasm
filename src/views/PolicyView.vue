@@ -2,9 +2,13 @@
 import AppHeader from "../components/AppHeader.vue";
 import AppFooter from "../components/AppFooter.vue";
 import { Share, Medal, Warning, Guide, Document, Aim } from "@element-plus/icons-vue";
+import { useScrollAnimation } from '../composables/useScrollAnimation';
 
 export default {
   components: { AppHeader, AppFooter, Share, Medal, Warning, Guide, Document, Aim },
+  setup() {
+    useScrollAnimation();
+  },
   data() {
     return {
       protections: [
@@ -109,7 +113,7 @@ export default {
 
       <el-main class="policy-main">
         <!-- Hero Banner -->
-        <div class="policy-hero">
+        <div class="policy-hero scroll-animate">
           <div class="policy-hero-overlay"></div>
           <div class="policy-hero-content">
             <h1 class="policy-hero-title">{{ $t('policy.heroTitle') }}</h1>
@@ -120,7 +124,7 @@ export default {
         </div>
 
         <!-- Intro -->
-        <div class="policy-intro animate-section">
+        <div class="policy-intro scroll-animate">
           <el-divider content-position="left">
             <span class="divider-title">{{ $t('policy.framework') }}</span>
           </el-divider>
@@ -132,7 +136,8 @@ export default {
           <div
             v-for="(item, idx) in protections"
             :key="idx"
-            class="policy-card animate-section"
+            class="policy-card scroll-animate"
+            :class="`scroll-animate-delay-${Math.min(idx + 1, 5)}`"
           >
             <div class="policy-card-image">
               <img :src="item.image" :alt="item.title" />
@@ -148,7 +153,7 @@ export default {
         </div>
 
         <!-- Species Conservation Status -->
-        <div class="species-section animate-section">
+        <div class="species-section scroll-animate">
           <el-divider content-position="left">
             <span class="divider-title">{{ $t('policy.speciesStatusTitle') }}</span>
           </el-divider>
@@ -156,7 +161,8 @@ export default {
             <div
               v-for="(sp, idx) in speciesStatus"
               :key="idx"
-              class="species-card animate-scale-in"
+              class="species-card scroll-animate"
+              :class="`scroll-animate-delay-${Math.min(idx + 1, 5)}`"
             >
               <div class="species-card-image">
                 <img :src="sp.image" :alt="sp.name" />
@@ -181,7 +187,7 @@ export default {
         </div>
 
         <!-- Conservation Priorities -->
-        <div class="priorities-section animate-section">
+        <div class="priorities-section scroll-animate">
           <el-divider content-position="left">
             <span class="divider-title">{{ $t('policy.prioritiesTitle') }}</span>
           </el-divider>
@@ -189,7 +195,8 @@ export default {
             <div
               v-for="(pri, idx) in priorities"
               :key="idx"
-              class="priority-card animate-slide-left"
+              class="priority-card scroll-animate"
+              :class="`scroll-animate-delay-${Math.min(idx + 1, 5)}`"
             >
               <div class="priority-icon">
                 <el-icon :size="24"><component :is="pri.icon" /></el-icon>
@@ -203,7 +210,7 @@ export default {
         </div>
 
         <!-- Call to Action -->
-        <div class="policy-cta animate-scale-in">
+        <div class="policy-cta scroll-animate scroll-animate-scale">
           <div class="cta-content">
             <el-icon :size="32"><Aim /></el-icon>
             <h2>{{ $t('policy.ctaTitle') }}</h2>

@@ -1,6 +1,7 @@
 <script>
 import AppHeader from "../components/AppHeader.vue";
 import AppFooter from "../components/AppFooter.vue";
+import { useScrollAnimation } from '../composables/useScrollAnimation';
 
 import { ElNotification } from "element-plus";
 import { Location, Collection, DataAnalysis, Star, Share, Document } from "@element-plus/icons-vue";
@@ -25,6 +26,9 @@ export default {
     Star,
     Share,
     Document,
+  },
+  setup() {
+    useScrollAnimation();
   },
   data() {
     return {
@@ -180,7 +184,7 @@ export default {
       </el-header>
       <el-main>
         <!-- Carousel Section -->
-        <el-carousel :interval="4000" type="card" height="400" arrow="always" class="hero-carousel">
+        <el-carousel :interval="4000" type="card" height="400" arrow="always" class="hero-carousel scroll-animate scroll-animate-scale">
           <el-carousel-item v-for="(item, index) in carouselItems" :key="index">
             <img :src="item.image" class="carousel-image" />
             <div class="slide-caption">{{ item.caption }}</div>
@@ -188,7 +192,7 @@ export default {
         </el-carousel>
 
         <!-- Section 1: Intro & Stats -->
-        <section class="content-section">
+        <section class="content-section scroll-animate">
           <h1>{{ $t('home.section1.title') }}</h1>
           <el-card class="intro-card" shadow="hover">
             <p class="intro-text" v-html="$t('home.section1.intro1')"></p>
@@ -200,7 +204,7 @@ export default {
           <!-- Stats Cards -->
           <el-row :gutter="20" class="stats-row">
             <el-col :lg="4" :md="8" :sm="12" :xs="24" v-for="(stat, index) in stats" :key="index">
-              <el-card shadow="hover" class="stats-card">
+              <el-card shadow="hover" class="stats-card" :class="`scroll-animate-delay-${Math.min(index + 1, 5)}`">
                 <div class="stats-icon">
                   <el-icon :size="28"><component :is="stat.icon" /></el-icon>
                 </div>
@@ -213,7 +217,7 @@ export default {
         </section>
 
         <!-- Section 2: Overview -->
-        <section class="content-section">
+        <section class="content-section scroll-animate">
           <h1>{{ $t('home.section2.title') }}</h1>
           <el-card shadow="hover" class="overview-card">
             <img src="../assets/image/Overview.png" alt="Overview" class="overview-image" />
@@ -221,11 +225,11 @@ export default {
         </section>
 
         <!-- Section 3: Publications -->
-        <section class="content-section">
+        <section class="content-section scroll-animate">
           <h1>{{ $t('home.section3.title') }}</h1>
           <el-row :gutter="20" class="papers-row">
             <el-col :lg="8" :md="12" :sm="24" :xs="24" v-for="(paper, index) in papers" :key="index">
-              <el-card shadow="hover" class="paper-card">
+              <el-card shadow="hover" class="paper-card" :class="`scroll-animate-delay-${Math.min(index + 1, 5)}`">
                 <a :href="paper.link" target="_blank" class="paper-link">
                   <img :src="paper.image" :alt="paper.title" class="paper-image" />
                 </a>
@@ -236,7 +240,7 @@ export default {
         </section>
 
         <!-- Section 4: Timeline -->
-        <section class="content-section">
+        <section class="content-section scroll-animate">
           <h1>{{ $t('home.section4.title') }}</h1>
           <el-card shadow="hover" class="timeline-card">
             <el-timeline>
@@ -260,7 +264,7 @@ export default {
         </section>
 
         <!-- Section 5: Map -->
-        <section class="content-section">
+        <section class="content-section scroll-animate">
           <h1>{{ $t('home.section5.title') }}</h1>
           <el-card shadow="hover" class="map-card">
             <template #header>
