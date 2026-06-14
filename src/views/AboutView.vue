@@ -199,8 +199,8 @@ export default {
         </el-row>
 
         <br />
-        <h2 class="scroll-animate">{{ $t('about.section4.title') }}</h2>
-        <el-card class="scroll-animate">
+        <h2>{{ $t('about.section4.title') }}</h2>
+        <el-card>
           <div style="
               line-height: 2em;
               overflow: auto;
