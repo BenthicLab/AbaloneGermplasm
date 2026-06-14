@@ -33,6 +33,7 @@ export default {
       search: '',
       tableData: [],
       loading: false,
+      useApi: false, // 标记是否使用 Flask API
       dialogVisible: false,
       dialogTitle: '',
       isEditing: false,
@@ -67,9 +68,32 @@ export default {
     async fetchData() {
       this.loading = true;
       try {
+        // 先尝试从 Flask API 获取数据
         const res = await axios.get(API_BASE);
         if (res.data.status === 'success') {
           this.tableData = res.data.results;
+          this.useApi = true;
+          return;
+        }
+      } catch (e) {
+        // API 不可用，回退到 JSON 文件
+        console.log('Flask API 不可用，使用本地 JSON 数据');
+        this.useApi = false;
+      }
+      
+      try {
+        // 先检查 localStorage 是否有数据
+        const localData = localStorage.getItem('germplasmData');
+        if (localData) {
+          this.tableData = JSON.parse(localData);
+        } else {
+          // 从静态 JSON 文件加载数据
+          const res = await axios.get('/data/germplasm.json');
+          if (res.data.status === 'success') {
+            this.tableData = res.data.results;
+            // 保存到 localStorage
+            localStorage.setItem('germplasmData', JSON.stringify(this.tableData));
+          }
         }
       } catch (e) {
         ElMessage.error(this.$t('germplasm.loadFailed'));
@@ -101,18 +125,41 @@ export default {
       this.dialogVisible = true;
     },
     async submitForm() {
-      try {
-        if (this.isEditing) {
-          await axios.put(`${API_BASE}/${this.editingId}`, this.form);
-          ElMessage.success(this.$t('germplasm.recordUpdated'));
-        } else {
-          await axios.post(API_BASE, this.form);
-          ElMessage.success(this.$t('germplasm.recordCreated'));
+      if (this.useApi) {
+        // Flask API 模式
+        try {
+          if (this.isEditing) {
+            await axios.put(`${API_BASE}/${this.editingId}`, this.form);
+            ElMessage.success(this.$t('germplasm.recordUpdated'));
+          } else {
+            await axios.post(API_BASE, this.form);
+            ElMessage.success(this.$t('germplasm.recordCreated'));
+          }
+          this.dialogVisible = false;
+          await this.fetchData();
+        } catch (e) {
+          ElMessage.error(this.$t('germplasm.operationFailed'));
         }
-        this.dialogVisible = false;
-        await this.fetchData();
-      } catch (e) {
-        ElMessage.error(this.$t('germplasm.operationFailed'));
+      } else {
+        // JSON + localStorage 模式
+        try {
+          if (this.isEditing) {
+            const idx = this.tableData.findIndex(r => r.id === this.editingId);
+            if (idx !== -1) {
+              this.tableData[idx] = { ...this.tableData[idx], ...this.form };
+              ElMessage.success(this.$t('germplasm.recordUpdated'));
+            }
+          } else {
+            const maxId = this.tableData.reduce((max, r) => Math.max(max, r.id || 0), 0);
+            const newRecord = { id: maxId + 1, ...this.form };
+            this.tableData.push(newRecord);
+            ElMessage.success(this.$t('germplasm.recordCreated'));
+          }
+          localStorage.setItem('germplasmData', JSON.stringify(this.tableData));
+          this.dialogVisible = false;
+        } catch (e) {
+          ElMessage.error(this.$t('germplasm.operationFailed'));
+        }
       }
     },
     deleteRecord(row) {
@@ -123,18 +170,23 @@ export default {
           type: 'warning',
           confirmButtonText: this.$t('germplasm.deleteBtn'),
           cancelButtonText: this.$t('germplasm.cancel'),
-          confirmButtonClass: 'el-button--danger is-disabled',
-          beforeClose: (action, instance, done) => {
-            if (action === 'confirm') {
-              // 暂时禁用确认删除功能
-              ElMessage.warning('删除功能暂时不可用');
-              return;
-            }
-            done();
-          },
+          confirmButtonClass: 'el-button--danger',
         }
       )
-        .then(() => {})
+        .then(() => {
+          if (this.useApi) {
+            axios.delete(`${API_BASE}/${row.id}`)
+              .then(() => {
+                ElMessage.success(this.$t('germplasm.recordDeleted'));
+                this.fetchData();
+              })
+              .catch(() => ElMessage.error(this.$t('germplasm.deleteFailed')));
+          } else {
+            this.tableData = this.tableData.filter(r => r.id !== row.id);
+            localStorage.setItem('germplasmData', JSON.stringify(this.tableData));
+            ElMessage.success(this.$t('germplasm.recordDeleted'));
+          }
+        })
         .catch(() => {});
     },
     handleRowStyle({ row }) {
@@ -403,6 +455,31 @@ export default {
 /* Dialog */
 :deep(.form-dialog) {
   border-radius: 16px;
+  overflow: hidden;
+}
+
+:deep(.el-overlay) {
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+:deep(.form-dialog .el-dialog) {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+html.dark :deep(.el-overlay) {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+html.dark :deep(.form-dialog .el-dialog) {
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 :deep(.form-dialog .el-dialog__header) {
